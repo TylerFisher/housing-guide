@@ -30,6 +30,9 @@ class Dorm(models.Model):
     def get_quotes(self):
        return Quote.objects.filter(story=self)
 
+    def get_slideshow(self):
+       return SlideshowImage.objects.filter(story=self)
+
 class Quote(models.Model):
     text = models.TextField()
     source = models.TextField()
@@ -43,3 +46,11 @@ class Room(models.Model):
     sq_ft = models.IntegerField()
     # shape = models.JSONField()
 
+class SlideshowImage(models.Model):
+    """For building slideshows and attaching them to stories"""
+    name = models.CharField(max_length=50)
+    story = models.ForeignKey(Dorm, null=True, blank=True)
+    image = models.ImageField(upload_to='uploads/%Y/%m/%d')
+    caption = models.TextField(null=True, blank=True)
+    def __unicode__(self):
+        return self.name
