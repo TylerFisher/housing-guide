@@ -18,18 +18,30 @@
 </head>
 <body>
     <div id="map"></div>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
     <script type="text/javascript">
+      var geojson;
       var map = L.map('map').setView([42.05528346483509,-87.67643451690674], 15);
       L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
           attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(map);
-      {% for shape in shapes %}
-      var {{ shape.name }} = {
-        {{ shape.poly.geojson }}
-      }
-      console.log({{ shape.name }});
-      {% endfor %}
+      $.getJSON('{% url "home" %}', function(data){
+            parse_map_data(data);
+        });
+      function parse_map_data(data){
+        $.each(data, function(key, val){
+            geojson = new L.GeoJSON(val, {
+              onEachFeature: onEachFeature
+            }).addTo(map);
+        });
+    }
+    function onEachFeature(feature, layer) {
+        // does this feature have a property named popupContent?
+        if (feature.properties && feature.properties.name) {
+            layer.bindPopup(feature.properties.name);
+        }
+    }
     </script>
 </body>
 </html>
