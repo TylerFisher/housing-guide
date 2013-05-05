@@ -63,3 +63,6 @@ class DormShapes(models.Model):
     """GeoDjango-specific overrides"""
     poly = models.MultiPolygonField()
     objects = models.GeoManager()
+
+    def __unicode__(self):
+        return '%s %s' % (self.name, self.poly)
