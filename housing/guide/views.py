@@ -13,9 +13,7 @@ def ensure_get(request):
         raise Http404
 
 def home(request):
-
     ensure_get(request)
-
     shapes = DormShapes.objects.all()
     if request.is_ajax():
         d = {}
@@ -23,8 +21,8 @@ def home(request):
             geojson = json.loads(shape.geojson)
             properties = {'name': shape.name}
             geojson['id'] = shape.osm_id
+            d[shape.geojson] = geojson
             geojson['properties'] = properties
-            d[shape.osm_id] = geojson
         return HttpResponse(json.dumps(d), mimetype='application/json')
 
     return render_to_response('test.html')
