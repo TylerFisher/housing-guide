@@ -20,12 +20,11 @@
     <div id="map"></div>
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+    <script src="{% static 'leaflet-providers.js' %}"></script>
     <script type="text/javascript">
       var geojson;
       var map = L.map('map').setView([42.05504447993239,-87.6753830909729], 16);
-      L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-          attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(map);
+      L.tileLayer.provider('MapQuestOpen.OSM').addTo(map);
       $.getJSON('{% url "home" %}', function(data){
             parse_map_data(data);
         });
