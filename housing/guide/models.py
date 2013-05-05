@@ -1,4 +1,4 @@
-from django.db import models
+from django.contrib.gis.db import models
 
 class Dorm(models.Model):
     dorm_type = models.CharField(max_length=40)
@@ -54,3 +54,12 @@ class SlideshowImage(models.Model):
     caption = models.TextField(null=True, blank=True)
     def __unicode__(self):
         return self.name
+
+class DormShapes(models.Model):
+    """OSM shapefiles attributes"""
+    osm_id = models.FloatField()
+    name = models.CharField(max_length=255)
+
+    """GeoDjango-specific overrides"""
+    poly = models.MultiPolygonField()
+    objects = models.GeoManager()
