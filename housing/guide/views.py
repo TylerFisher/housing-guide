@@ -26,3 +26,6 @@ def home(request):
         return HttpResponse(json.dumps(d), mimetype='application/json')
 
     return render_to_response('index.html')
+
+def detail(request):
+    return render_to_response('detail.html')
