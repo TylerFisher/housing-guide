@@ -1,0 +1,134 @@
+// General
+.clear {clear: both;}
+.float-left {float: left;}
+.float-right {float: right;}
+.padding-top {padding-top: 24px;}
+.no-padding {padding: 0em;}
+
+// NBN Logo & Purple Bar
+#bar {
+	background-color: $dark-purple;
+	height: 40px;
+	img {
+		width: 30px;
+		padding-top: 5px;
+		margin-left: 5px;
+		@media (max-width: $desk-start) {
+			display: block;
+			margin-right: auto;
+			margin-left: auto;
+		}
+	}
+}
+
+// Headline, Intro, Search
+#header {
+	position: relative;
+	color: $dark-gray;
+	border-bottom: 1px solid $light-purple;
+	overflow: auto;
+	padding: 24px;
+}
+#search-container {
+	position: relative;
+	@media (max-width: $desk-start) {
+		width: 50%;
+		margin: 0 25%;
+	}
+	@media (min-width: $desk-start) {
+		position: absolute;
+		right: 24px;
+		bottom: 24px;
+		width: 30%;
+	}
+	label {
+		position: absolute;
+		left: 8px;
+		@media (max-width: $desk-start) {
+			top: 12px;
+		}
+	}
+	input {
+	background: transparent;
+	width: 100%;
+		@media (max-width: $desk-start) {
+			margin: 12px 0em;
+		}
+	}
+}
+
+#table-container {
+	padding-right: 24px;
+}
+
+// Filter 
+#filter-container {
+	padding-left: 48px;
+	padding-right: 24px;
+	@media (min-width: $desk-start) {
+		border-right: 1px solid $light-purple;
+	}
+	@media (max-width: $desk-start) {
+		border-bottom: 1px solid $light-purple;
+	}
+	ul {
+		margin: 0.5em 0em 0em 0em;
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		li {
+			list-style-type: none;
+			line-height: 80%;
+			label {
+				display: inline;
+			}
+			@media (max-width: $desk-start) {
+				margin-left: 0.5em;
+				float: left;
+			}
+		}
+		@media (min-width: $lap-start) and (max-width: $desk-start) {
+			display: inline;
+		}
+		input {
+			font-size: 75%;
+		}
+	}
+}
+
+// Map
+#map-container {
+	@media (max-width: $desk-start) {
+		padding-left: 48px;
+	}
+}
+#map {
+	height: 500px;
+	@media (max-width: $lap-start) {
+		display: none;
+	}
+}
+
+// Table
+table {
+	tr {
+		padding-left: 24px;
+		border-bottom: 1px solid $light-purple;
+	}
+	tbody tr.perfect-fit {
+		background-color: $green;
+	}
+	tbody tr.good-fit {
+		background-color: $yellow;
+	}
+	thead tr {
+		background-color: $dark-purple;
+		color: #fff;
+	}	
+}
+td {
+	padding: 0;
+}

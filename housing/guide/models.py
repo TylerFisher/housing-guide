@@ -1,6 +1,7 @@
 from django.contrib.gis.db import models
 
 class Dorm(models.Model):
+    name = models.CharField(max_length=255, null=True)
     dorm_type = models.CharField(max_length=40)
     has_ac = models.BooleanField()
     size = models.IntegerField()

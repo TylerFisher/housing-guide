@@ -1,0 +1,259 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0">
+    <title>Housing Guide - North by Northwestern</title>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//use.typekit.net/rwj4edd.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
+    <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+</head>
+<body>
+
+	<div id="bar">
+		<a href="http://northbynorthwestern.com/"><img src="{% static 'img/nbn-logo.png' %}" alt="North by Northwestern"></a>
+	</div>
+	<div id="header">
+		<h1><span class="smaller">The </span>Housing Guide</h1>
+		<div class="grid">
+			<div class="grid__item one-whole desk-two-thirds float-left">
+				<p class="body-text intro">Your first college dorm can be a taste of freedom and a great community, but it can also be daunting. Use the filters to see which dorms work for you, then click a dorm name to see video, photos and more.</p>
+			</div><!--
+		 --><div class="grid__item one-whole desk-one-third no-padding">
+				<div id="search-container">
+					<label for="searchbox"><span class="delta">Search</span><span class="epsilon"> by dorm name</span></label>
+					<input id="searchbox" type="text" data-provide="typeahead" autocomplete="off">	
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="grid clear">	
+
+		<div id="filter-container" class="grid__item one-whole desk-one-fifth padding-top">
+			<h4>Filter<a href="#about-filters"><span class="epsilon"> or read more</span></a></h4>
+			<ul>
+				<li>
+					<input type="checkbox" id="north-filter">
+					<label class="body-text" class="body-text" for="north-filter">North Campus</label>
+				</li>
+				<li>
+					<input type="checkbox" id="south-filter">
+					<label class="body-text" for="south-filter">South Campus</label>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<input type="checkbox" id="ac-filter">
+					<label class="body-text" for="ac-filter">Has A.C.</label>
+				</li>
+				<li>
+					<input type="checkbox" id="dining-filter">
+					<label class="body-text" for="dining-filter">Has dining hall</label>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<input type="checkbox" id="rescol-filter">
+					<label class="body-text" for="rescol-filter">Res college</label>
+				</li>
+				<li>
+					<input type="checkbox" id="freshmen-filter">
+					<label class="body-text" for="freshmen-filter">Freshmen only</label>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<input type="checkbox" id="small-filter">
+					<label class="body-text" for="small-filter">Small</label>
+				</li>
+				<li>
+					<input type="checkbox" id="med-filter">
+					<label class="body-text" for="med-filter">Medium</label>
+				</li>
+				<li>
+					<input type="checkbox" id="large-filter">
+					<label class="body-text" for="large-filter">Large</label>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<input type="checkbox" id="male-filter">
+					<label class="body-text" for="male-filter">Male only</label>
+				</li>
+				<li>
+					<input type="checkbox" id="female-filter">
+					<label class="body-text" for="female-filter">Female only</label>
+				</li>
+				<li>
+					<input type="checkbox" id="opengender-filter">
+					<label class="body-text" for="opengender-filter">Open gender</label>
+				</li>
+			</ul>
+		</div><!-- End filter grid item
+
+	 --><div id="map-container" class="grid__item one-whole lap-one-half desk-two-fifths padding-top">
+			<h4>Explore</h4>
+			<div id="map">
+			</div>
+		</div><!-- End map grid item
+
+	 --><div id="table-container" class="grid__item one-whole lap-one-half desk-two-fifths padding-top">
+
+			<table>
+				<thead>
+					<tr>
+						<td>Hall</td>
+						<td>Residents</td>
+						<td>Type</td>
+					</tr>
+				</thead>
+				<tbody>
+				{% for dorm in dorms %}
+					<tr>
+						<td><p class="body-text">{{ dorm.name }}</p></td>
+						<td><p class="body-text">{{ dorm.size }}</p></td>
+						<td><p class="body-text">{{ dorm.dorm_type }}</p></td>
+					</tr>
+				{% endfor %}
+			<!-- 		<tr>
+						<td><p class="body-text">1835 Hinman</td>
+						<td><p class="body-text">100</td>
+						<td><p class="body-text">Hall</td>
+					</tr>
+					<tr>
+						<td><p class="body-text">Allison</td>
+						<td><p class="body-text">300</td>
+						<td><p class="body-text">Hall</td>
+					</tr>
+					<tr>
+						<td><p class="body-text">Ayers</td>
+						<td><p class="body-text">88</td>
+						<td><p class="body-text">College</td>
+					</tr>
+					<tr>
+						<td><p class="body-text">Bobb</p></td>
+						<td><p class="body-text">50</p></td>
+						<td><p class="body-text">Hall</p></td>
+					</tr>
+					<tr>
+						<td><p class="body-text">Chapin</p></td>
+						<td><p class="body-text">7</p></td>
+						<td><p class="body-text">College</p></td>
+					</tr>
+					<tr>
+						<td><p class="body-text">College of Cultural & Community Studies / GREEN house</p></td>
+						<td><p class="body-text">50</p></td>
+						<td><p class="body-text">College</p></td>
+					</tr>
+					<tr>
+						<td><p class="body-text">Communications Residential College</p></td>
+						<td><p class="body-text">28</p></td>
+						<td><p class="body-text">College</p></td>
+					</tr>
+					<tr>
+						<td><p class="body-text">Elder</p></td>
+						<td><p class="body-text">245</p></td>
+						<td><p class="body-text">Hall</p></td>
+					</tr>
+					<tr>
+						<td><p class="body-text">Hobart</p></td>
+						<td><p class="body-text">59</p></td>
+						<td><p class="body-text">College</p></td>
+					</tr>
+					<tr>
+						<td><p class="body-text">Interfaith</p></td>
+						<td><p class="body-text">10</p></td>
+						<td><p class="body-text">College</p></td>
+					</tr>
+					<tr>
+						<td><p class="body-text">ISRC</p></td>
+						<td><p class="body-text">88</p></td>
+						<td><p class="body-text">College</p></td>
+					</tr>
+					<tr>
+						<td><p class="body-text">Jones</p></td>
+						<td><p class="body-text">59</p></td>
+						<td><p class="body-text">College</p></td>
+					</tr>
+					<tr>
+						<td><p class="body-text">NMQ</p></td>
+						<td><p class="body-text">20</p></td>
+						<td><p class="body-text">Hall</p></td>
+					</tr>
+					<tr>
+						<td><p class="body-text">PARC</p></td>
+						<td><p class="body-text">99</p></td>
+						<td><p class="body-text">College</p></td>
+					</tr>
+					<tr>
+						<td><p class="body-text">Rogers</p></td>
+						<td><p class="body-text">25</p></td>
+						<td><p class="body-text">Hall</p></td>
+					</tr>
+					<tr>
+						<td><p class="body-text">Sargent</p></td>
+						<td><p class="body-text">137</p></td>
+						<td><p class="body-text">Hall</p></td>
+					</tr>
+					<tr>
+						<td><p class="body-text">Shepard</p></td>
+						<td><p class="body-text">22</p></td>
+						<td><p class="body-text">College</p></td>
+					</tr>
+					<tr>
+						<td><p class="body-text">Slivka</p></td>
+						<td><p class="body-text">62</p></td>
+						<td><p class="body-text">College</p></td>
+					</tr>
+					<tr>
+						<td><p class="body-text">SMQ</p></td>
+						<td><p class="body-text">84</p></td>
+						<td><p class="body-text">Hall</p></td>
+					</tr>
+					<tr>
+						<td><p class="body-text">Willard</p></td>
+						<td><p class="body-text">33</p></td>
+						<td><p class="body-text">College</p></td>
+					</tr>
+ -->				</tbody>
+			</table>
+		</div><!-- End table grid item -->
+
+	</div><!-- End grid container -->
+
+	<div class="padding-top">
+		<a id="about-filters"><h4>About the filters</h4></a>
+		<p class="body-text">North campus and south campus blah blah blah</p>
+		<p class="body-text">Do you really, really need a.c.?</p>
+		<p class="body-text">Something about the dining hall "reserved spaces"?</p>
+	</div>
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+    <script src="{% static 'js/leaflet-providers.js' %}"></script>
+    <script type="text/javascript">
+      var geojson;
+      var map = L.map('map').setView([42.05504447993239,-87.6753830909729], 16);
+      L.tileLayer.provider('MapQuestOpen.OSM').addTo(map);
+      $.getJSON('{% url "home" %}', function(data){
+            parse_map_data(data);
+        });
+      function parse_map_data(data){
+        $.each(data, function(key, val){
+            geojson = new L.GeoJSON(val, {
+              onEachFeature: onEachFeature
+            }).addTo(map);
+        });
+    }
+    function onEachFeature(feature, layer) {
+        // does this feature have a property named popupContent?
+        if (feature.properties && feature.properties.name) {
+            layer.bindPopup(feature.properties.name);
+        }
+    }
+    </script>
+</body>
+</html>
