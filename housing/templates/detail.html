@@ -1,21 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0">
-    <title>Housing Guide - North by Northwestern</title>
-    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
-    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="//use.typekit.net/rwj4edd.js"></script>
-	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-    <link rel="stylesheet" href="css/style.min.css">
-    <link rel="stylesheet" href="css/detail2.css">
-</head>
-<body>
-
-	<div id="bar">
-		<a href="http://northbynorthwestern.com/"><img src="img/nbn-logo.png" alt="North by Northwestern"></a>
-	</div>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block main %}
 	<div id="header">
 		<div class="grid">
 			<div class="grid__item one-whole desk-two-thirds float-left">
@@ -39,14 +24,14 @@
 			<div class="padding-top">
 				<h3>Look inside</h3>
 				<div>
-					<img src="img/photo-icon.png">
+					<img src="{% static 'img/photo-icon.png' %}">
 					<p>Photo</p>
 				</div>
 				<div>
 					<p>Video</p>
 				</div>
 				<div id="photo-container">
-					<img src="img/1.jpg">
+					<img src="{% static 'img/1.jpg' %}">
 				</div>
 				<div class="padding-top">
 					<h3>Vital stats</h3>
@@ -91,12 +76,33 @@
 				<h4><a href="../index.html">&laquo; Go back</a></h4>
 			</div>
 			<div id="small-map">
-				<p>A small map is going to go here.</p>
 			</div>
 			<h3 class="padding-top">Room size</h3>
-			<img src="img/room.jpg">
+			<img src="{% static 'img/room.jpg' %}">
 		</div>
 	</div>
-
-</body>
-</html>
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+    <script src="{% static 'js/leaflet-providers.js' %}"></script>
+    <script type="text/javascript">
+      var geojson;
+      var map = L.map('small-map').setView([42.05504447993239,-87.6753830909729], 16);
+      L.tileLayer.provider('MapQuestOpen.OSM').addTo(map);
+      $.getJSON('{% url "home" %}', function(data){
+            parse_map_data(data);
+        });
+      function parse_map_data(data){
+        $.each(data, function(key, val){
+            geojson = new L.GeoJSON(val, {
+              onEachFeature: onEachFeature
+            }).addTo(map);
+        });
+    }
+    function onEachFeature(feature, layer) {
+        // does this feature have a property named popupContent?
+        if (feature.properties && feature.properties.name) {
+            layer.bindPopup(feature.properties.name);
+        }
+    }
+    </script>
+{% endblock %}

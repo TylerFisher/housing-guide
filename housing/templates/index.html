@@ -1,21 +1,6 @@
+{% extends "base.html" %}
 {% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0">
-    <title>Housing Guide - North by Northwestern</title>
-    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="//use.typekit.net/rwj4edd.js"></script>
-	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
-    <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
-</head>
-<body>
-
-	<div id="bar">
-		<a href="http://northbynorthwestern.com/"><img src="{% static 'img/nbn-logo.png' %}" alt="North by Northwestern"></a>
-	</div>
+{% block main %}
 	<div id="header">
 		<h1><span class="smaller">The </span>Housing Guide</h1>
 		<div class="grid">
@@ -255,5 +240,4 @@
         }
     }
     </script>
-</body>
-</html>
+    {% endblock %}
