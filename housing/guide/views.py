@@ -25,4 +25,4 @@ def home(request):
             geojson['properties'] = properties
         return HttpResponse(json.dumps(d), mimetype='application/json')
 
-    return render_to_response('test.html')
+    return render_to_response('index.html')
