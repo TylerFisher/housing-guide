@@ -55,7 +55,8 @@
 						<p class="body-text">$2642 per quarter</p>
 					</div>
 					<div class="stats-item">
-
+            <svg class="chart">
+            </svg>
 					</div>
 				</div>
 				<div class="padding-top">
@@ -104,5 +105,73 @@
             layer.bindPopup(feature.properties.name);
         }
     }
+
+    // D3.js bar chart for class distributions
+    var data = [42, 23, 16, 15];
+    var chart = d3.select(".chart")
+                  .attr("width", 270)
+                  .attr("height", 20 * data.length);
+    var x = d3.scale.linear()
+      .domain([0, d3.max(data)])
+      .range(["0px", "160px"]);
+
+    var y = d3.scale.ordinal()
+      .domain(data)
+      .rangeBands([0, 80]);
+
+    chart.selectAll("rect")
+      .data(data)
+      .enter().append("rect")
+      .attr("y", y)
+      .attr("width", x)
+      .attr("height", y.rangeBand())
+      .style("fill", function(d, i) {
+          if (i % 2) {
+            return "#4682b4";
+          } else {
+            return "#b0c4de";
+          }
+      });
+
+    // Class labels
+    chart.selectAll("text")
+      .data(data)
+      .enter().append("text")
+      .attr("x", x)
+      .attr("y", function(d) { return y(d) + y.rangeBand() / 2; })
+      .attr("dx", 5)
+      .attr("dy", ".35em")
+      .attr("text-anchor", "begin")
+      .text(function(d, i) { 
+          var year = '';
+          switch (i) {
+          case 0:
+            year = 'Freshmen';
+            break;
+          case 1:
+            year = 'Sophomores';
+            break;
+          case 2:
+            year = 'Juniors';
+            break;
+          case 3:
+            year = 'Seniors';
+            break;
+          }
+          return year + " (" + d  + ")"; 
+       });
+
+    // Numbers
+    chart.selectAll("text")
+      .data(data)
+      .enter().append("text")
+      .attr("x", x)
+      .attr("y", function(d) { return y(d) + y.rangeBand() / 2; })
+      .attr("dx", -4)
+      .attr("dy", ".35em")
+      .attr("text-anchor", "end")
+      .text(function(d, i) { 
+          return d; 
+       });
     </script>
 {% endblock %}
