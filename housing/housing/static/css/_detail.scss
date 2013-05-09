@@ -44,6 +44,9 @@
     vertical-align: bottom;
 }
 
+.chart rect {
+    shape-rendering: crispEdges;
+}
 .chart text {
     font-family: "ff-meta-serif-web-pro", serif;
 }
