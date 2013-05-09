@@ -1,8 +1,14 @@
-#small-map {
-	height: 100px;
-	background-color: #7D9AE4;
+.reduced-width { // Prevents photo box, quote text, etc. from being too wide
+	width: 80%;
 }
 
+// DETAIL MAIN GRID ITEM (Contains photo, video, vital stats, quotes)
+#detail-main-container {
+	padding: 24px;
+	border-left: 1px solid $light-purple;
+}
+
+// Photo and Video Box
 .tab {
 	width: 30%;
 	@media (min-width: $lap-start) {
@@ -24,26 +30,42 @@
 		float: left;
 	}
 }
-
 #photo-tab {
 	background: $dark-purple;
 }
-
 #video-tab {
 	background: $light-purple;
+	margin-left: 1%;
 }
-
 #photo-container {
 	background: $dark-purple;
 	padding: 1.8%;
 }
 
+// Vital Stats
 .stats-item {
 	display: inline-block;
 	padding-right: 24px;
     vertical-align: bottom;
 }
-
 .chart text {
     font-family: "ff-meta-serif-web-pro", serif;
+}
+
+// DETAIL SIDEBAR GRID ITEM (Contains map, room size)
+#detail-sidebar-container {
+	padding: 24px 24px 24px 48px;
+}
+
+// Back button
+#back-button {
+	padding: 0px 0px 20px 24px;
+	margin: 0px -24px;
+	border-bottom: 1px solid $light-purple;
+}
+
+// Map
+#small-map {
+	height: 240px;
+	margin-top: 24px;
 }

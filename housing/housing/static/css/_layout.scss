@@ -109,6 +109,7 @@
 }
 #map {
 	height: 500px;
+	margin-top: 16px;
 	@media (max-width: $lap-start) {
 		display: none;
 	}

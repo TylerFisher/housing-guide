@@ -11,6 +11,10 @@ span.smaller {
 }
 a {
 	text-decoration: none;
+	color: $dark-purple;
+}
+a:hover{
+	color: $light-purple;
 }
 ::selection {
 	background: $dark-purple;
