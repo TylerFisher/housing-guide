@@ -221,7 +221,14 @@
     <script src="{% static 'js/leaflet-providers.js' %}"></script>
     <script type="text/javascript">
       var geojson;
-      var map = L.map('map').setView([42.05504447993239,-87.6753830909729], 16);
+      var map = L.map('map', {
+      	minZoom: 14,
+      	maxZoom: 18,
+      	maxBounds: [
+      		[42.07095890994855, -87.65922546386719],
+      		[42.039094188385945, -87.69158363342285]
+      	]
+      }).setView([42.05504447993239,-87.6753830909729], 15);
       L.tileLayer.provider('MapQuestOpen.OSM').addTo(map);
       $.getJSON('{% url "home" %}', function(data){
             parse_map_data(data);
