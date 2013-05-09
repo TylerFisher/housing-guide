@@ -36,3 +36,4 @@ nosetests.xml
 
 # Swap files
 *.sw?
+.sass-cache
