@@ -3,6 +3,36 @@
 	background-color: #7D9AE4;
 }
 
+.tab {
+	width: 30%;
+	@media (min-width: $lap-start) {
+		width: 28%;
+	}
+	@media(min-width: $desk-start) {
+		width: 15%;
+	}
+	padding: 0.5% 2% 0% 2%;
+	color: #fff;
+	font-family: $meta;
+	img {
+		width: 25%;
+		@media (max-width: $desk-start) {
+			width: 15%;
+		}
+		min-width: 30px;
+		margin-right: 8%;
+		float: left;
+	}
+}
+
+#photo-tab {
+	background: $dark-purple;
+}
+
+#video-tab {
+	background: $light-purple;
+}
+
 #photo-container {
 	background: $dark-purple;
 	padding: 1.8%;

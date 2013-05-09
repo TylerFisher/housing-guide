@@ -3,7 +3,7 @@ h1, h2, h3, h4, h5, h6, p {
 	margin-bottom: 0em;
 }
 label.body-text {
-	font-size: 0.7em;
+	font-size: 0.8em;
 }
 span.smaller { 
 	font-size: 0.7em;
@@ -30,7 +30,7 @@ a {
 }
 .body-text {
 	font-family: $meta;
-	font-size: 0.8em;
+	font-size: 1.0em;
 }
 
 // Heading Styles
@@ -51,7 +51,7 @@ h2 { // Header for each dorm detail page, e.g. "Hobart House"
 }
 h3 {
 	font-family: $meta;
-	color: $light-gray;
+	color: $dark-gray;
 	font-size: 1em;
 	font-weight: normal;
 }
@@ -60,14 +60,16 @@ h4, .delta { // Actions, e.g. "Filter," "Search," "Explore"
 	text-transform: uppercase;
 	color: $dark-purple;
 	font-weight: lighter;
-	font-size: 0.7em;
+	font-size: 0.8em;
 }
 h5, span.epsilon { // Details on actions, e.g. "by dorm name," "or read more"
 	font-family: $proxima;
 	color: $light-gray;
 	font-weight: normal;
 	text-transform: lowercase;
-	font-size: 0.7rem;
+	font-size: 0.8rem;
 }
 
-
+.number {
+	font-size: 1.1em;
+}

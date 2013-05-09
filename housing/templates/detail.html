@@ -23,24 +23,25 @@
 			</div>
 			<div class="padding-top">
 				<h3>Look inside</h3>
-				<div>
+				<div id="photo-tab" class="tab float-left" >
 					<img src="{% static 'img/photo-icon.png' %}">
 					<p>Photo</p>
 				</div>
-				<div>
+				<div id="video-tab" class="tab float-left">
+          <img src="{% static 'img/video-icon.png' %}">
 					<p>Video</p>
 				</div>
-				<div id="photo-container">
+				<div id="photo-container" class="clear">
 					<img src="{% static 'img/1.jpg' %}">
 				</div>
 				<div class="padding-top">
 					<h3>Vital stats</h3>
 					<div class="stats-item">
 						<p class="body-text">South campus</p>
-						<p class="body-text">0.7 miles from Tech</p>
-						<p class="body-text">0.5 miles from Norris</p>
-						<p class="body-text">0.4 miles from Kresge</p>
-						<p class="body-text">0.3 miles from Burger King</p>
+						<p class="body-text"><span class="number">0.7</span> miles from Tech</p>
+						<p class="body-text"><span class="number">0.5</span> miles from Norris</p>
+						<p class="body-text"><span class="number">0.4</span> miles from Kresge</p>
+						<p class="body-text"><span class="number">0.3</span> miles from Burger King</p>
 					</div>
 					<div class="stats-item">
 						<p class="body-text">100 doubles</p>
