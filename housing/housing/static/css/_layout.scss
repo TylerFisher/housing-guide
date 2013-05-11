@@ -143,6 +143,16 @@ td {
 #teaser-container {
 	padding-left: 24px;
 }
+.teaser {
+	@media (max-width: $lap-start) {
+		margin-top: 24px;
+	}
+}
+.teaser:first-child {
+	@media (max-width: $lap-start) {
+		margin-top: 0px;
+	}
+}
 
 // About the Filters
 #filter-exp-container {
