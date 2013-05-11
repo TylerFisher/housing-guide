@@ -105,47 +105,47 @@
 					</tr>
 				{% endfor %} -->
 					<tr>
-						<td><p class="body-text">1835 Hinman</td>
+						<td><div class="dot perfect-fit"></div><p class="body-text">1835 Hinman</td>
 						<td><p class="body-text">100</td>
 						<td><p class="body-text">Hall</td>
 					</tr>
 					<tr>
-						<td><p class="body-text">Allison</td>
+						<td><div class="dot perfect-fit"></div><p class="body-text">Allison</td>
 						<td><p class="body-text">300</td>
 						<td><p class="body-text">Hall</td>
 					</tr>
 					<tr>
-						<td><p class="body-text">Ayers</td>
+						<td><div class="dot perfect-fit"></div><p class="body-text">Ayers</td>
 						<td><p class="body-text">88</td>
 						<td><p class="body-text">College</td>
 					</tr>
 					<tr>
-						<td><p class="body-text">Bobb</p></td>
+						<td><div class="dot perfect-fit"></div><p class="body-text">Bobb</p></td>
 						<td><p class="body-text">50</p></td>
 						<td><p class="body-text">Hall</p></td>
 					</tr>
 					<tr>
-						<td><p class="body-text">Chapin</p></td>
+						<td><div class="dot good-fit"></div><p class="body-text">Chapin</p></td>
 						<td><p class="body-text">7</p></td>
 						<td><p class="body-text">College</p></td>
 					</tr>
 					<tr>
-						<td><p class="body-text">College of Cultural & Community Studies</p></td>
+						<td><div class="dot good-fit"></div><p class="body-text">College of Cultural & Community Studies</p></td>
 						<td><p class="body-text">50</p></td>
 						<td><p class="body-text">College</p></td>
 					</tr>
 					<tr>
-						<td><p class="body-text">GREEN house</p></td>
+						<td><div class="dot good-fit"></div><p class="body-text">GREEN house</p></td>
 						<td><p class="body-text">50</p></td>
 						<td><p class="body-text">College</p></td>
 					</tr>
 					<tr>
-						<td><p class="body-text">Communications Residential College</p></td>
+						<td><div class="dot bad-fit"></div><p class="body-text">Communications Residential College</p></td>
 						<td><p class="body-text">28</p></td>
 						<td><p class="body-text">College</p></td>
 					</tr>
 					<tr>
-						<td><p class="body-text">Elder</p></td>
+						<td><div class="dot bad-fit"></div><p class="body-text">Elder</p></td>
 						<td><p class="body-text">245</p></td>
 						<td><p class="body-text">Hall</p></td>
 					</tr>
@@ -290,7 +290,7 @@
       function parse_map_data(data){
         $.each(data, function(key, val){
             geojson = new L.GeoJSON(val, {
-              onEachFeature: onEachFeature
+              onEachFeature: onEachFeature,
               style: function(feature) {
               	return {'weight': '0', fillColor: '#268BD2', fillOpacity: '1'};
               }

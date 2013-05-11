@@ -136,7 +136,24 @@ table {
 	}	
 }
 td {
-	padding: 0;
+	padding: 0% 1.5% 0% 0%;
+}
+.dot {
+	display: block;
+	float: left;
+	width: 8px;
+	height: 8px;
+	border-radius: 8px;
+	margin: 7px;
+}
+.dot.perfect-fit {
+	background-color: $green;
+}
+.dot.good-fit {
+	background-color: $yellow;
+}
+.dot.bad-fit {
+	background-color: $red;
 }
 
 // Teasers
