@@ -10,13 +10,13 @@
 		 --><div class="grid__item one-whole desk-one-third no-padding">
 				<div id="search-container">
 					<label for="searchbox"><span class="delta">Search</span><span class="epsilon"> by dorm name</span></label>
-					<input id="searchbox" type="text" data-provide="typeahead" autocomplete="off">	
+					<input id="searchbox" type="text" data-provide="typeahead" autocomplete="off">
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<div class="grid clear border-bottom">	
+	<div class="grid clear border-bottom">
 
 		<div id="filter-container" class="grid__item one-whole desk-one-fifth padding-top">
 			<h4>Filter<a href="#about-filters"><span class="epsilon"> or read more</span></a></h4>
@@ -291,6 +291,9 @@
         $.each(data, function(key, val){
             geojson = new L.GeoJSON(val, {
               onEachFeature: onEachFeature
+              style: function(feature) {
+              	return {'weight': '0', fillColor: '#268BD2', fillOpacity: '1'};
+              }
             }).addTo(map);
         });
     }
