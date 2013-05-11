@@ -1,24 +1,28 @@
 .reduced-width { // Prevents photo box, quote text, etc. from being too wide
-	width: 80%;
+	@media (min-width: $desk-start) {
+		width: 80%;
+	}
 }
 
 // DETAIL MAIN GRID ITEM (Contains photo, video, vital stats, quotes)
 #detail-main-container {
 	padding: 24px;
 	border-left: 1px solid $light-purple;
+	@media (max-width: $desk-start) {
+		padding-left: 48px;
+	}
 }
 
 // Photo and Video Box
 .tab {
-	width: 30%;
+	width: 32%;
 	@media (min-width: $lap-start) {
-		width: 28%;
+		width: 25%;
 	}
 	@media(min-width: $desk-start) {
-		width: 15%;
+		width: 18%;
 	}
 	padding: 0.5% 2% 0% 2%;
-	color: #fff;
 	font-family: $meta;
 	img {
 		width: 25%;
@@ -29,17 +33,27 @@
 		margin-right: 8%;
 		float: left;
 	}
+	h3 {
+		color: #fff;
+		margin: 8px 0px 0px 0px;
+	}
 }
 #photo-tab {
 	background: $dark-purple;
 }
 #video-tab {
 	background: $light-purple;
-	margin-left: 1%;
+	margin-left: 12px;
 }
 #photo-container {
 	background: $dark-purple;
-	padding: 1.8%;
+	padding: 2.8%;
+	@media (min-width: $lap-start) {
+		padding: 1.8%;
+	}
+	img {
+		width: 100%;
+	}
 }
 
 // Vital Stats
@@ -71,4 +85,13 @@
 #small-map {
 	height: 240px;
 	margin-top: 24px;
+	@media (max-width: $lap-start) {
+		display: none;
+	}
+}
+
+// Room Size
+#detail-sidebar-container img {
+	width: 50%;
+	margin-left: 25%;
 }

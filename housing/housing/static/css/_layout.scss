@@ -45,19 +45,19 @@
 	label {
 		position: absolute;
 		left: 8px;
+		top: 2px;
 		@media (max-width: $desk-start) {
-			top: 12px;
+			top: 18px;
 		}
 	}
 	input {
 	background: transparent;
 	width: 100%;
 		@media (max-width: $desk-start) {
-			margin: 12px 0em;
+			margin: 16px 0em;
 		}
 	}
 }
-
 #table-container {
 	padding-right: 24px;
 }

@@ -17,12 +17,13 @@ a:hover{
 	color: $light-purple;
 }
 ::selection {
-	background: $dark-purple;
-	color: #fff;
+	background: $light-purple;
 }
 ::-moz-selection {
-	background: $dark-purple;
-	color: #fff;
+	background: $light-purple;
+}
+#search-container input {
+	font-family: $meta;
 }
 
 // Paragraph Styles
@@ -36,6 +37,12 @@ a:hover{
 	font-family: $meta;
 	font-size: 1.0em;
 }
+.number {
+	font-size: 1.1em;
+	font-family: $proxima;
+	font-weight: bold;
+	color: $dark-gray;
+}
 
 // Heading Styles
 h1 { // "The Housing Guide"
@@ -44,8 +51,13 @@ h1 { // "The Housing Guide"
 	font-size: 3.25em;
 	line-height: 1em;
 	text-transform: uppercase;
+	margin-bottom: 0.2em;
 	@media (max-width: $desk-start) {
 		text-align: center;
+		font-size: 2.75em;
+	}
+	@media (max-width: $lap-start) {
+		font-size: 2.25em;
 	}
 }
 h2 { // Header for each dorm detail page, e.g. "Hobart House"
@@ -54,10 +66,13 @@ h2 { // Header for each dorm detail page, e.g. "Hobart House"
 	color: $dark-gray;
 }
 h3 {
-	font-family: $meta;
+	font-family: $proxima;
 	color: $dark-gray;
 	font-size: 1em;
 	font-weight: normal;
+	text-transform: uppercase;
+	font-weight: bold;
+	margin-bottom: 24px;
 }
 h4, .delta { // Actions, e.g. "Filter," "Search," "Explore"
 	font-family: $proxima;
@@ -72,8 +87,4 @@ h5, span.epsilon { // Details on actions, e.g. "by dorm name," "or read more"
 	font-weight: normal;
 	text-transform: lowercase;
 	font-size: 0.8rem;
-}
-
-.number {
-	font-size: 1.1em;
 }
