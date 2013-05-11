@@ -14,7 +14,7 @@ a {
 	color: $dark-purple;
 }
 a:hover{
-	color: $light-purple;
+	text-decoration: underline;
 }
 ::selection {
 	background: $light-purple;
@@ -72,7 +72,6 @@ h3 {
 	font-weight: normal;
 	text-transform: uppercase;
 	font-weight: bold;
-	margin-bottom: 24px;
 }
 h4, .delta { // Actions, e.g. "Filter," "Search," "Explore"
 	font-family: $proxima;
@@ -87,4 +86,17 @@ h5, span.epsilon { // Details on actions, e.g. "by dorm name," "or read more"
 	font-weight: normal;
 	text-transform: lowercase;
 	font-size: 0.8rem;
+}
+.teaser h2 { // Headlines on related stories and filter explanations
+	font-size: 1em;
+	color: $dark-purple;
+}
+.filter-exp h2 {
+	font-size: 1em;
+}
+.credit {
+	font-family: $proxima;
+	font-weight: light;
+	font-size: 0.8em;
+	color: #fff;
 }

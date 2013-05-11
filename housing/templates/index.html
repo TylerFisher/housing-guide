@@ -97,14 +97,14 @@
 					</tr>
 				</thead>
 				<tbody>
-				{% for dorm in dorms %}
+<!-- 				{% for dorm in dorms %}
 					<tr>
 						<td><p class="body-text">{{ dorm.name }}</p></td>
 						<td><p class="body-text">{{ dorm.size }}</p></td>
 						<td><p class="body-text">{{ dorm.dorm_type }}</p></td>
 					</tr>
-				{% endfor %}
-			<!-- 		<tr>
+				{% endfor %} -->
+					<tr>
 						<td><p class="body-text">1835 Hinman</td>
 						<td><p class="body-text">100</td>
 						<td><p class="body-text">Hall</td>
@@ -130,7 +130,12 @@
 						<td><p class="body-text">College</p></td>
 					</tr>
 					<tr>
-						<td><p class="body-text">College of Cultural & Community Studies / GREEN house</p></td>
+						<td><p class="body-text">College of Cultural & Community Studies</p></td>
+						<td><p class="body-text">50</p></td>
+						<td><p class="body-text">College</p></td>
+					</tr>
+					<tr>
+						<td><p class="body-text">GREEN house</p></td>
 						<td><p class="body-text">50</p></td>
 						<td><p class="body-text">College</p></td>
 					</tr>
@@ -204,18 +209,67 @@
 						<td><p class="body-text">33</p></td>
 						<td><p class="body-text">College</p></td>
 					</tr>
- -->				</tbody>
+				</tbody>
 			</table>
 		</div><!-- End table grid item -->
 
 	</div><!-- End grid container -->
 
-	<div id="about-filters-container" class="padding-top">
-		<a id="about-filters"><h4>About the filters</h4></a>
-		<p class="body-text">North campus and south campus blah blah blah</p>
-		<p class="body-text">Do you really, really need a.c.?</p>
-		<p class="body-text">Something about the dining hall "reserved spaces"?</p>
+	<!-- TEASERS -->
+	<h3 class="padding-top padding-left">Related Stories</h3>
+	<div id="teaser-container" class="grid padded border-bottom">
+		<div class="teaser grid__item one-whole lap-and-up-one-third">
+			<a href="http://www.northbynorthwestern.com/story/Where-did-dorm-trash-cans-go/">
+				<img src="{% static 'img/graph.png' %}">
+			</a>
+			<a href="http://www.northbynorthwestern.com/story/explaining-on-and-off-campus-housing/">
+				<h2 class="story-hed">Housing Explainer</h2>
+			</a>
+			<p class="body-text">With this Housing Explainer, North by Northwestern has taken a perennial University issue, put it in context and found information you can always reference.</p>
+		</div><!--
+	 --><div class="teaser grid__item one-whole lap-and-up-one-third">
+	 		<a href="http://www.northbynorthwestern.com/story/gender-open-housing-to-expand-for-2013/">
+				<img src="{% static 'img/gender.jpg' %}">
+			</a>
+			<a href="http://www.northbynorthwestern.com/story/gender-open-housing-to-expand-for-2013/">
+				<h2 class="story-hed">Gender Open Housing</h2>
+			</a>
+			<p class="body-text">Gender Open Housing, which has the capacity to house 144 students for the 2013-2014 academic year, the most yet, goes live May 2. </p>
+		</div><!--
+	 --><div class="teaser grid__item one-whole lap-and-up-one-third">
+			<a href="http://www.northbynorthwestern.com/story/Where-did-dorm-trash-cans-go/">
+				<img src="{% static 'img/trash.jpeg' %}">
+			</a>
+			<a href="http://www.northbynorthwestern.com/story/Where-did-dorm-trash-cans-go/">
+				<h2 class="story-hed">Where did dorm trash cans go?</h2>
+			</a>
+			<p class="body-text">The removal of trash cans and implementation of new Trash & Recycling Centers in Allison have sparked dorm tension. </p>
+		</div>
 	</div>
+
+	<a id="about-filters"><h3 class="padding-top padding-left">About the filters</h3></a>
+	<div id="filter-exp-container" class="grid padded">
+		<div class="filter-exp grid__item one-whole lap-and-up-one-third">
+			<h2>North and South Campus</h2>
+			<p class="body-text">North campus and south campus blah blah blah</p>
+		</div><!--
+	 --><div class="filter-exp grid__item one-whole lap-and-up-one-third">
+			<h2>What's a res college</h2>
+			<p class="body-text">And what's a res hall? And a res college?</p>
+		</div><!--
+	 --><div class="filter-exp grid__item one-whole lap-and-up-one-third">
+			<h2>Open Gender</h2>
+			<p class="body-text">Short explanation and link (again) to open gender story</p>
+		</div>
+	</div>
+
+	<div class="padded background-purple">
+		<p class="credit">Design and development by Tyler Fisher, Hilary Fung, Dan Hill, KK Rebecca Lai, Sheng Wu and Katie Zhu</p>
+		<p class="credit">Photography by TKTKTKTK</p>
+		<p class="credit">Reporting by TKTKTKTK</p>
+		<p class="credit">Data provided by Northwestern University Housing</p>
+	</div>
+
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
     <script src="{% static 'js/leaflet-providers.js' %}"></script>

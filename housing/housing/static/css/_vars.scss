@@ -24,7 +24,7 @@
  * following variables to `true`.
  */
 $use-grids:         true;
-$use-flexbox:       true;
+$use-flexbox:       false;
 $use-columns:       false;
 $use-nav:           false;
 $use-options:       false;
@@ -73,8 +73,9 @@ $dark-purple: #381F5E;
 $light-purple: #c3bccf;
 $dark-gray: #333132;
 $light-gray: #939598;
-$green: #A3C350;
-$yellow: #FFCF51;
+$green: #199E8D;
+$yellow: #E68C1A;
+$red: #CD2A2B;
 $meta: "ff-meta-serif-web-pro", serif;
 $proxima: "proxima-nova", sans-serif;
 $proxima-c: "proxima-nova-extra-condensed", sans-serif;
