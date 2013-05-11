@@ -23,24 +23,25 @@
 			</div>
 			<div class="padding-top">
 				<h3>Look inside</h3>
-				<div>
+				<div id="photo-tab" class="tab float-left" >
 					<img src="{% static 'img/photo-icon.png' %}">
 					<p>Photo</p>
 				</div>
-				<div>
+				<div id="video-tab" class="tab float-left">
+          <img src="{% static 'img/video-icon.png' %}">
 					<p>Video</p>
 				</div>
-				<div id="photo-container">
+				<div id="photo-container" class="clear">
 					<img src="{% static 'img/1.jpg' %}">
 				</div>
 				<div class="padding-top">
 					<h3>Vital stats</h3>
 					<div class="stats-item">
 						<p class="body-text">South campus</p>
-						<p class="body-text">0.7 miles from Tech</p>
-						<p class="body-text">0.5 miles from Norris</p>
-						<p class="body-text">0.4 miles from Kresge</p>
-						<p class="body-text">0.3 miles from Burger King</p>
+						<p class="body-text"><span class="number">0.7</span> miles from Tech</p>
+						<p class="body-text"><span class="number">0.5</span> miles from Norris</p>
+						<p class="body-text"><span class="number">0.4</span> miles from Kresge</p>
+						<p class="body-text"><span class="number">0.3</span> miles from Burger King</p>
 					</div>
 					<div class="stats-item">
 						<p class="body-text">100 doubles</p>
@@ -107,71 +108,60 @@
     }
 
     // D3.js bar chart for class distributions
-    var data = [42, 23, 16, 15];
+    var w = 240,
+    h = 100,
+    x = d3.scale.ordinal().rangeRoundBands([0, h-1])
+    y = d3.scale.linear().range([0, w-1])
+    z = d3.scale.ordinal().range(['lightblue', 'lightpink']);
+
+    var data = [
+      {'male': 23, 'female': 19},
+      {'male': 11, 'female': 12},
+      {'male': 8, 'female': 9},
+      {'male': 2, 'female': 1}
+    ];
+    var genders = d3.layout.stack()(['male', 'female'].map(
+      function(gender) {
+        return data.map(function(d, i) {
+          return {x: i, y: +d[gender]};
+        });
+      })
+    );
+    var classes = ['Freshmen', 'Sophomores', 'Juniors', 'Seniors'];
+
     var chart = d3.select(".chart")
-                  .attr("width", 270)
-                  .attr("height", 20 * data.length);
-    var x = d3.scale.linear()
-      .domain([0, d3.max(data)])
-      .range(["0px", "160px"]);
+                  .attr("width", w)
+                  .attr("height", h)
+                  .append("svg:g");
+    x.domain(genders[0].map(function(d) { return d.x }));
+    y.domain([0, d3.max(genders[genders.length - 1], function(d) {
+        return d.y0 + d.y; })]);
 
-    var y = d3.scale.ordinal()
-      .domain(data)
-      .rangeBands([0, 80]);
+    var gender = chart.selectAll("g.gender")
+      .data(genders)
+      .enter().append("svg:g")
+      .attr("class", "gender")
+      .style("fill", function(d, i) { return z(i); })
+      .style("stroke", function(d, i) { return d3.rgb(z(i)).darker(); });
+    
+    // Draw rectangles
+    var rect = gender.selectAll("rect")
+      .data(Object)
+      .enter().append("svg:rect")
+      .attr("x", function(d) { return y(d.y0); })
+      .attr("y", function(d) { return x(d.x); })
+      .attr("height", x.rangeBand())
+      .attr("width", function(d) { return y(d.y); });
 
-    chart.selectAll("rect")
-      .data(data)
-      .enter().append("rect")
-      .attr("y", y)
-      .attr("width", x)
-      .attr("height", y.rangeBand())
-      .style("fill", function(d, i) {
-          if (i % 2) {
-            return "#4682b4";
-          } else {
-            return "#b0c4de";
-          }
-      });
-
-    // Class labels
+    // Label bars by class
     chart.selectAll("text")
       .data(data)
-      .enter().append("text")
-      .attr("x", x)
-      .attr("y", function(d) { return y(d) + y.rangeBand() / 2; })
-      .attr("dx", 5)
+      .enter().append("svg:text")
+      .attr("y", function(d, i) { return x(i) + x.rangeBand() / 2; })
+      .attr("dx", 6)
       .attr("dy", ".35em")
       .attr("text-anchor", "begin")
-      .text(function(d, i) { 
-          var year = '';
-          switch (i) {
-          case 0:
-            year = 'Freshmen';
-            break;
-          case 1:
-            year = 'Sophomores';
-            break;
-          case 2:
-            year = 'Juniors';
-            break;
-          case 3:
-            year = 'Seniors';
-            break;
-          }
-          return year + " (" + d  + ")"; 
-       });
+      .text(function(d, i) { return classes[i]; });
 
-    // Numbers
-    chart.selectAll("text")
-      .data(data)
-      .enter().append("text")
-      .attr("x", x)
-      .attr("y", function(d) { return y(d) + y.rangeBand() / 2; })
-      .attr("dx", -4)
-      .attr("dy", ".35em")
-      .attr("text-anchor", "end")
-      .text(function(d, i) { 
-          return d; 
-       });
     </script>
 {% endblock %}
