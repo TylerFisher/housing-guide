@@ -132,3 +132,53 @@ table {
 td {
 	padding: 0;
 }
+
+
+// Teasers
+
+#teaser-container {
+	margin: 50px 40px 0px 0px;
+	padding: 50px 0px 0px 0px;
+	border-top: 1px dotted $light-gray;
+	@media (min-width: $desk-start) {
+		padding-left: 60px;
+	}
+
+}
+
+.teaser-header {
+	font-size: 10;
+}
+
+.teaser-head {
+	font-family: $meta;
+	font-weight: bold;
+	padding-bottom: 10px;
+}
+
+.teasers {
+	margin: 0px 0px 20px 0px;
+}
+
+.teaser-img {
+	border: 1px solid $light-gray;
+}
+
+
+// Footer
+
+.footer {
+	margin: 0px 0px 50px 30px;
+	border-top: 5px solid $light-purple;
+	@media (min-width: $desk-start) {
+		padding-left: 60px;
+	}
+}
+
+.about-head {
+	padding-top: 20px;
+}
+
+
+
+

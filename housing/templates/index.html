@@ -210,12 +210,48 @@
 
 	</div><!-- End grid container -->
 
-	<div class="padding-top">
-		<a id="about-filters"><h4>About the filters</h4></a>
-		<p class="body-text">North campus and south campus blah blah blah</p>
-		<p class="body-text">Do you really, really need a.c.?</p>
-		<p class="body-text">Something about the dining hall "reserved spaces"?</p>
+
+	<!-- TEASERS -->
+	<div id="teaser-container" class="grid">
+		<div class="teasers grid__item one-whole">
+			<h3><b>Check out these other NBN stories!</b></h3>
+		</div>
+
+		<div class="teasers grid__item one-whole lap-one-third desk-one-third">
+			<a href="http://www.northbynorthwestern.com/story/explaining-on-and-off-campus-housing/" class="teaser-head">Housing Explainer</a>
+			<img class="teaser-img" src="{% static 'img/graph.png' %}">
+		</div>
+
+		<div class="teasers grid__item one-whole lap-one-third desk-one-third">
+			<a href="http://www.northbynorthwestern.com/story/gender-open-housing-to-expand-for-2013/" class="teaser-head">Gender Open Housing</a>
+			<img class="teaser-img" src="{% static 'img/gender.jpg' %}">
+		</div>
+
+		<div class="teasers grid__item one-whole lap-one-third desk-one-third">
+			<a href="http://www.northbynorthwestern.com/story/Where-did-dorm-trash-cans-go/" class="teaser-head">Where did dorm trash cans go?</a>
+			<img class="teaser-img" src="{% static 'img/trash.jpeg' %}">
+		</div>
 	</div>
+
+	<div class="footer padding-top">
+		<a id="about-filters"><h4>About the filters</h4></a>
+		<div class="grid__item one-whole lap-one-quarter desk-one-quarter">
+			<p class="about-head">North and South Campus</p>
+			<p class="body-text">North campus and south campus blah blah blah</p>
+		</div>
+
+		<div class="grid__item one-whole lap-one-quarter desk-one-quarter">
+			<p class="about-head">Air Conditioning</p>
+			<p class="body-text">Do you really, really need a.c.?</p>
+		</div>
+
+		<div class="grid__item one-whole lap-one-quarter desk-one-quarter">
+			<p class="about-head">Dining Hall</p>
+			<p class="body-text">Something about the dining hall "reserved spaces"?</p>
+		</div>
+	</div>
+
+
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
     <script src="{% static 'js/leaflet-providers.js' %}"></script>
