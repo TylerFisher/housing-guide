@@ -18,66 +18,86 @@
 
 	<div class="grid clear border-bottom">
 
-		<div id="filter-container" class="grid__item one-whole desk-one-fifth padding-top">
+		<div id="filter-container" class="grid__item one-whole desk-one-fifth padded">
 			<h4>Filter<a href="#about-filters"><span class="epsilon"> or read more</span></a></h4>
-			<ul>
-				<li>
-					<input type="checkbox" id="north-filter">
-					<label class="body-text" class="body-text" for="north-filter">North Campus</label>
-				</li>
-				<li>
-					<input type="checkbox" id="south-filter">
-					<label class="body-text" for="south-filter">South Campus</label>
-				</li>
-			</ul>
-			<ul>
-				<li>
-					<input type="checkbox" id="ac-filter">
-					<label class="body-text" for="ac-filter">Has A.C.</label>
-				</li>
-				<li>
-					<input type="checkbox" id="dining-filter">
-					<label class="body-text" for="dining-filter">Has dining hall</label>
-				</li>
-			</ul>
-			<ul>
-				<li>
-					<input type="checkbox" id="rescol-filter">
-					<label class="body-text" for="rescol-filter">Res college</label>
-				</li>
-				<li>
-					<input type="checkbox" id="freshmen-filter">
-					<label class="body-text" for="freshmen-filter">Freshmen only</label>
-				</li>
-			</ul>
-			<ul>
-				<li>
-					<input type="checkbox" id="small-filter">
-					<label class="body-text" for="small-filter">Small</label>
-				</li>
-				<li>
-					<input type="checkbox" id="med-filter">
-					<label class="body-text" for="med-filter">Medium</label>
-				</li>
-				<li>
-					<input type="checkbox" id="large-filter">
-					<label class="body-text" for="large-filter">Large</label>
-				</li>
-			</ul>
-			<ul>
-				<li>
-					<input type="checkbox" id="male-filter">
-					<label class="body-text" for="male-filter">Male only</label>
-				</li>
-				<li>
-					<input type="checkbox" id="female-filter">
-					<label class="body-text" for="female-filter">Female only</label>
-				</li>
-				<li>
-					<input type="checkbox" id="opengender-filter">
-					<label class="body-text" for="opengender-filter">Open gender</label>
-				</li>
-			</ul>
+			<div class="grid">
+				<div class="grid__item one-whole lap-one-fifth">
+					<ul>
+						<li>
+							<input type="checkbox" id="north-filter">
+							<label class="body-text" class="body-text" for="north-filter">North Campus</label>
+						</li>
+						<li>
+							<input type="checkbox" id="south-filter">
+							<label class="body-text" for="south-filter">South Campus</label>
+						</li>
+					</ul>
+				</div><!--
+			 --><div class="grid__item one-whole lap-one-fifth">
+					<ul>
+						<li>
+							<input type="checkbox" id="ac-filter">
+							<label class="body-text" for="ac-filter">Has A.C.</label>
+						</li>
+						<li>
+							<input type="checkbox" id="dining-filter">
+							<label class="body-text" for="dining-filter">Has dining hall</label>
+						</li>
+					</ul>
+				</div><!--
+			 --><div class="grid__item one-whole lap-one-fifth">
+					<ul>
+						<li>
+							<input type="checkbox" id="rescol-filter">
+							<label class="body-text" for="rescol-filter">Res College</label>
+						</li>
+						<li>
+							<input type="checkbox" id="rescol-filter">
+							<label class="body-text" for="rescol-filter">Res Community</label>
+						</li>
+						<li>
+							<input type="checkbox" id="rescol-filter">
+							<label class="body-text" for="rescol-filter">Res Hall</label>
+						</li>
+						<li>
+							<input type="checkbox" id="freshmen-filter">
+							<label class="body-text" for="freshmen-filter">Freshmen only</label>
+						</li>
+					</ul>
+				</div><!--
+			 --><div class="grid__item one-whole lap-one-fifth">
+					<ul>
+						<li>
+							<input type="checkbox" id="small-filter">
+							<label class="body-text" for="small-filter">Small</label>
+						</li>
+						<li>
+							<input type="checkbox" id="med-filter">
+							<label class="body-text" for="med-filter">Medium</label>
+						</li>
+						<li>
+							<input type="checkbox" id="large-filter">
+							<label class="body-text" for="large-filter">Large</label>
+						</li>
+					</ul>
+				</div><!--
+			 --><div class="grid__item one-whole lap-one-fifth">
+					<ul>
+						<li>
+							<input type="checkbox" id="male-filter">
+							<label class="body-text" for="male-filter">Male only</label>
+						</li>
+						<li>
+							<input type="checkbox" id="female-filter">
+							<label class="body-text" for="female-filter">Female only</label>
+						</li>
+						<li>
+							<input type="checkbox" id="opengender-filter">
+							<label class="body-text" for="opengender-filter">Open gender</label>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</div><!-- End filter grid item
 
 	 --><div id="map-container" class="grid__item one-whole lap-one-half desk-two-fifths padding-top">
@@ -112,7 +132,7 @@
 					<tr>
 						<td><div class="dot perfect-fit"></div><p class="body-text">Allison</td>
 						<td><p class="body-text">300</td>
-						<td><p class="body-text">Hall</td>
+						<td><p class="body-text">Community</td>
 					</tr>
 					<tr>
 						<td><div class="dot perfect-fit"></div><p class="body-text">Ayers</td>
@@ -147,70 +167,80 @@
 					<tr>
 						<td><div class="dot bad-fit"></div><p class="body-text">Elder</p></td>
 						<td><p class="body-text">245</p></td>
-						<td><p class="body-text">Hall</p></td>
+						<td><p class="body-text">Community</p></td>
 					</tr>
 					<tr>
-						<td><p class="body-text">Hobart</p></td>
+						<td><div class="dot bad-fit"></div><p class="body-text">Hobart</p></td>
 						<td><p class="body-text">59</p></td>
 						<td><p class="body-text">College</p></td>
 					</tr>
 					<tr>
-						<td><p class="body-text">Interfaith</p></td>
+						<td><div class="dot bad-fit"></div><p class="body-text">Interfaith</p></td>
 						<td><p class="body-text">10</p></td>
 						<td><p class="body-text">College</p></td>
 					</tr>
 					<tr>
-						<td><p class="body-text">ISRC</p></td>
+						<td><div class="dot bad-fit"></div><p class="body-text">International Studies Residential College</p></td>
 						<td><p class="body-text">88</p></td>
 						<td><p class="body-text">College</p></td>
 					</tr>
 					<tr>
-						<td><p class="body-text">Jones</p></td>
+						<td><div class="dot bad-fit"></div><p class="body-text">Jones</p></td>
 						<td><p class="body-text">59</p></td>
 						<td><p class="body-text">College</p></td>
 					</tr>
 					<tr>
-						<td><p class="body-text">NMQ</p></td>
+						<td><div class="dot bad-fit"></div><p class="body-text">NMQ</p></td>
 						<td><p class="body-text">20</p></td>
 						<td><p class="body-text">Hall</p></td>
 					</tr>
 					<tr>
-						<td><p class="body-text">PARC</p></td>
+						<td><div class="dot bad-fit"></div><p class="body-text">PARC</p></td>
 						<td><p class="body-text">99</p></td>
 						<td><p class="body-text">College</p></td>
 					</tr>
 					<tr>
-						<td><p class="body-text">Rogers</p></td>
+						<td><div class="dot bad-fit"></div><p class="body-text">Rogers</p></td>
 						<td><p class="body-text">25</p></td>
 						<td><p class="body-text">Hall</p></td>
 					</tr>
 					<tr>
-						<td><p class="body-text">Sargent</p></td>
+						<td><div class="dot bad-fit"></div><p class="body-text">Sargent</p></td>
 						<td><p class="body-text">137</p></td>
 						<td><p class="body-text">Hall</p></td>
 					</tr>
 					<tr>
-						<td><p class="body-text">Shepard</p></td>
+						<td><div class="dot bad-fit"></div><p class="body-text">Shepard</p></td>
 						<td><p class="body-text">22</p></td>
 						<td><p class="body-text">College</p></td>
 					</tr>
 					<tr>
-						<td><p class="body-text">Slivka</p></td>
+						<td><div class="dot bad-fit"></div><p class="body-text">Slivka</p></td>
 						<td><p class="body-text">62</p></td>
 						<td><p class="body-text">College</p></td>
 					</tr>
 					<tr>
-						<td><p class="body-text">SMQ</p></td>
+						<td><div class="dot bad-fit"></div><p class="body-text">SMQ</p></td>
 						<td><p class="body-text">84</p></td>
 						<td><p class="body-text">Hall</p></td>
 					</tr>
 					<tr>
-						<td><p class="body-text">Willard</p></td>
+						<td><div class="dot bad-fit"></div><p class="body-text">Willard</p></td>
 						<td><p class="body-text">33</p></td>
 						<td><p class="body-text">College</p></td>
 					</tr>
 				</tbody>
 			</table>
+			<div id="legend">
+				<div id="legend-container">
+					<div class="dot perfect-fit"></div>
+					<p class="body-text float-left">Perfect</p>
+					<div class="dot good-fit"></div>
+					<p class="body-text float-left">Meh</p>
+					<div class="dot bad-fit"></div>
+					<p class="body-text float-left">Not your type</p>
+				</div>
+			</div>
 		</div><!-- End table grid item -->
 
 	</div><!-- End grid container -->
@@ -223,9 +253,9 @@
 				<img src="{% static 'img/graph.png' %}">
 			</a>
 			<a href="http://www.northbynorthwestern.com/story/explaining-on-and-off-campus-housing/">
-				<h2 class="story-hed">Housing Explainer</h2>
+				<h2 class="story-hed">Housing explainer</h2>
 			</a>
-			<p class="body-text">With this Housing Explainer, North by Northwestern has taken a perennial University issue, put it in context and found information you can always reference.</p>
+			<p class="body-text">With this housing explainer, North by Northwestern has taken a perennial University issue, put it in context and found information you can always reference.</p>
 		</div><!--
 	 --><div class="teaser grid__item one-whole lap-and-up-one-third">
 	 		<a href="http://www.northbynorthwestern.com/story/gender-open-housing-to-expand-for-2013/">
@@ -258,7 +288,7 @@
 			<p class="body-text">And what's a res hall? And a res college?</p>
 		</div><!--
 	 --><div class="filter-exp grid__item one-whole lap-and-up-one-third">
-			<h2>Open Gender</h2>
+			<h2>Gender Open</h2>
 			<p class="body-text">Short explanation and link (again) to open gender story</p>
 		</div>
 	</div>

@@ -19,71 +19,97 @@
 		<div id="detail-main-container" class="grid__item one-whole desk-three-quarters float-right">
 			<div>
 				<h2>East Fairchild (Communications Residential College)</h2>
-				<p class="body-text reduced-width">East Fairchild, also known as Communications Residential College, is a smaller dorm geared toward students interested in journalism, film and media. Located on the southern tip of campus, the hall houses mostly freshmen and sophomores.</p>
+        <h3>1855 Sheridan Road</h3>
+				<p class="body-text reduced-width padding-top">East Fairchild, also known as Communications Residential College, is a smaller dorm geared toward students interested in journalism, film and media. Located on the southern tip of campus, the hall houses mostly freshmen and sophomores.</p>
 			</div>
 			<div class="padding-top">
-				<a href="#">
-          <div id="photo-tab" class="tab float-left" >
-  					<img src="{% static 'img/photo-icon.png' %}">
-  					<h3>Photo</h3>
-  				</div>
-        </a>
-        <a href="#">
-  				<div id="video-tab" class="tab float-left">
-            <img src="{% static 'img/video-icon.png' %}">
-  					<h3>Video</h3>
-  				</div>
-        </a>
-				<div id="photo-container" class="clear reduced-width">
-					<img src="{% static 'img/1.jpg' %}">
+        <div id="photo-tab" class="tab float-left" >
+					<img src="{% static 'img/photo-icon.png' %}">
+					<h3>Photo</h3>
 				</div>
-				<div class="padding-top">
-					<h3>Vital stats</h3>
-					<div class="stats-item">
-						<p class="body-text">South campus</p>
-						<p class="body-text"><span class="number">0.7</span> miles from Tech</p>
-						<p class="body-text"><span class="number">0.5</span> miles from Norris</p>
-						<p class="body-text"><span class="number">0.4</span> miles from Kresge</p>
-						<p class="body-text"><span class="number">0.3</span> miles from Burger King</p>
-					</div>
-					<div class="stats-item">
-						<p class="body-text"><span class="number">100</span> doubles</p>
-						<p class="body-text">+ <span class="number">10</span> singles</p>
-						<hr>
-						<p class="body-text"><span class="number">110</span> residents</p>
-					</div>
-					<div class="stats-item">
-						<p class="body-text">No A.C.</p>
-						<p class="body-text">Closest dining hall: Hinman
-						<p class="body-text">Residential college</p>
-						<p class="body-text">$<span class="number">2642</span> per quarter</p>
-					</div>
-					<div class="stats-item">
-            <svg class="chart">
-            </svg>
-					</div>
+      
+				<div id="video-tab" class="tab float-left">
+          <img src="{% static 'img/video-icon.png' %}">
+					<h3>Video</h3>
+				</div> 
+				<div id="media-container" class="clear reduced-width">
+          <img src="{% static 'img/1.jpg' %}">
+					<div id="embed-container">
+          </div>
 				</div>
+
+        <h3 class="padding-top hidden-desktop">Vital stats</h3>
+        <div class="grid padding-top hidden-desktop">
+          <div class="grid__item one-whole lap-one-third stats-item">
+            <p class="body-text">South campus</p>
+            <p class="body-text"><span class="number">15</span> minute walk to Tech</p>
+            <p class="body-text"><span class="number">8</span> minute walk to Norris</p>
+            <p class="body-text"><span class="number">5</span> minute walk to Kresge</p>
+            <p class="body-text"><span class="number">2</span> minute walk to Burger King</p>
+          </div><!--
+         --><div class="grid__item one-whole lap-one-third stats-item">
+            <p class="body-text"><span class="number">100</span> doubles</p>
+            <p class="body-text">+ <span class="number">10</span> singles</p>
+            <p class="body-text">+ <span class="number">5</span> triples</p>
+            <p id="sum" class="body-text"><span class="number">115</span> residents</p>
+          </div><!--
+         --><div class="grid__item one-whole lap-one-third stats-item">
+            <p class="body-text">No A.C.</p>
+            <p class="body-text">Closest dining hall: Hinman
+            <p class="body-text">Residential college</p>
+            <p class="body-text">$<span class="number">2642</span> per quarter</p>
+          </div>
+        </div>
+        
 				<div class="padding-top reduced-width">
 					<h3>What residents say</h3>
-					<p class="body-text">&ldquo;Very clique-y. If you're not an RTVF major, you will feel left out. The sophomores are already best friends so it's hard for the freshmen to fit in.&rdquo;</p>
-					<p class="body-text">&ldquo;Most in the dorm are RTVF or journalism majors, which makes it very nice for those people, but other majors are not left out either. CRC has a lot of very cool traditions.&rdquo;</p>
-					<p class="body-text">&ldquo;This dorm should have been renovated twenty years ago. An alum came back who lived here in the 80s and said he had the same furniture.&rdquo;</p>
-					<p class="body-text">&ldquo;It's super close to all south classes, so you can roll out of bed at 8:53 and get to a 9 am class with a minute to breathe.&rdquo;</p>
-					<p class="body-text">&ldquo;Everyone here only hangs out with/parties with/talks to /sleeps with people here. It's also very nerdy and into things like video games, comic books, internet memes, etc.&rdquo;</p>
-					<p class="body-text">&ldquo;If you are fairly sarcastic, enjoy messing with people, internet memes, and don't necessarily need to party 24/7, CRC is a great dorm.&rdquo;</p>
-					<p class="body-text">&ldquo;The people are really interesting, but having such a small, tight-knit, family-like community can also mean that fights and bullshit and divisions all get blown up much larger than they need to be.&rdquo;</p>
-					<p class="body-text">&ldquo;Very social, trusting, and weird. It definitely has its own fun, unique culture."</p>
+
+					<p class="body-text quote padding-top">&ldquo;Very clique-y. If you're not an RTVF major, you will feel left out. The sophomores are already best friends so it's hard for the freshmen to fit in.&rdquo;</p>
+          <p class="quote-attr">Tyler Fisher, Bienan freshman</p>
+
+					<p class="body-text quote">&ldquo;Most in the dorm are RTVF or journalism majors, which makes it very nice for those people, but other majors are not left out either. CRC has a lot of very cool traditions.&rdquo;</p>
+          <p class="quote-attr">Hilary Fung, Medill senior</p>
+
+					<p class="body-text quote">&ldquo;This dorm should have been renovated twenty years ago. An alum came back who lived here in the 80s and said he had the same furniture.&rdquo;</p>
+          <p class="quote-attr">Rebecca Lai, SESP sophomore</p>
+
+					<p class="body-text quote">&ldquo;It's super close to all south classes, so you can roll out of bed at 8:53 and get to a 9 am class with a minute to breathe.&rdquo;</p>
+          <p class="quote-attr">Sheng Wu, McCormick junior</p>
+
+					<p class="body-text quote">&ldquo;Everyone here only hangs out with/parties with/talks to /sleeps with people here. It's also very nerdy and into things like video games, comic books, internet memes, etc.&rdquo;</p>
+          <p class="quote-attr">Hilary Zhu, Superhuman</p>
+
+					<p class="body-text quote">&ldquo;If you are fairly sarcastic, enjoy messing with people, internet memes, and don't necessarily need to party 24/7, CRC is a great dorm.&rdquo;</p>
+          <p class="quote-attr">Dan Hill, Medill senior</p>
+
 				</div>
 			</div>
 		</div>
 		<div id="detail-sidebar-container" class="grid__item one-whole desk-one-quarter float-left">
-			<div id="back-button">
-				<h4><a href="../index.html">&laquo; Go back</a></h4>
-			</div>
 			<div id="small-map">
 			</div>
-			<h3 class="padding-top">Room size</h3>
-			<img src="{% static 'img/room.jpg' %}">
+      <h3 class="padding-top display-desktop">Vital stats</h3>
+        <div class="display-desktop">
+          <div class="padding-top stats-item">
+            <p class="body-text">South campus</p>
+            <p class="body-text"><span class="number">15</span> minute walk to Tech</p>
+            <p class="body-text"><span class="number">8</span> minute walk to Norris</p>
+            <p class="body-text"><span class="number">5</span> minute walk to Kresge</p>
+            <p class="body-text"><span class="number">2</span> minute walk to Burger King</p>
+          </div>
+          <div class="stats-item">
+            <p class="body-text"><span class="number">100</span> doubles</p>
+            <p class="body-text">+ <span class="number">10</span> singles</p>
+            <p class="body-text">+ <span class="number">5</span> triples</p>
+            <p id="sum" class="body-text"><span class="number">115</span> residents</p>
+          </div>
+          <div class="stats-item">
+            <p class="body-text">No A.C.</p>
+            <p class="body-text">Closest dining hall: Hinman
+            <p class="body-text">Residential college</p>
+            <p class="body-text">$<span class="number">2642</span> per quarter</p>
+          </div>
+        </div>
 		</div>
 	</div>
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -110,61 +136,19 @@
         }
     }
 
-    // D3.js bar chart for class distributions
-    var w = 240,
-    h = 100,
-    x = d3.scale.ordinal().rangeRoundBands([0, h-1])
-    y = d3.scale.linear().range([0, w-1])
-    z = d3.scale.ordinal().range(['lightblue', 'lightpink']);
+    $('#video-tab').click(function() {
+      $('#embed-container').append('<iframe src="http://player.vimeo.com/video/65669594" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>');
+      $('#media-container img').css('display', 'none');
+      $('#video-tab').css('background', '#381F5E');
+      $('#photo-tab').css('background', '#c3bccf');
+      $('#embed-container').css('display','block');
+    });
 
-    var data = [
-      {'male': 23, 'female': 19},
-      {'male': 11, 'female': 12},
-      {'male': 8, 'female': 9},
-      {'male': 2, 'female': 1}
-    ];
-    var genders = d3.layout.stack()(['male', 'female'].map(
-      function(gender) {
-        return data.map(function(d, i) {
-          return {x: i, y: +d[gender]};
-        });
-      })
-    );
-    var classes = ['Freshmen', 'Sophomores', 'Juniors', 'Seniors'];
-
-    var chart = d3.select(".chart")
-                  .attr("width", w)
-                  .attr("height", h)
-                  .append("svg:g");
-    x.domain(genders[0].map(function(d) { return d.x }));
-    y.domain([0, d3.max(genders[genders.length - 1], function(d) {
-        return d.y0 + d.y; })]);
-
-    var gender = chart.selectAll("g.gender")
-      .data(genders)
-      .enter().append("svg:g")
-      .attr("class", "gender")
-      .style("fill", function(d, i) { return z(i); })
-      .style("stroke", function(d, i) { return d3.rgb(z(i)).darker(); });
-    
-    // Draw rectangles
-    var rect = gender.selectAll("rect")
-      .data(Object)
-      .enter().append("svg:rect")
-      .attr("x", function(d) { return y(d.y0); })
-      .attr("y", function(d) { return x(d.x); })
-      .attr("height", x.rangeBand())
-      .attr("width", function(d) { return y(d.y); });
-
-    // Label bars by class
-    chart.selectAll("text")
-      .data(data)
-      .enter().append("svg:text")
-      .attr("y", function(d, i) { return x(i) + x.rangeBand() / 2; })
-      .attr("dx", 6)
-      .attr("dy", ".35em")
-      .attr("text-anchor", "begin")
-      .text(function(d, i) { return classes[i]; });
-
+    $('#photo-tab').click(function() {
+      $('#embed-container').hide();
+      $('#media-container img').css('display', 'block');
+      $('#photo-tab').css('background', '#381F5E');
+      $('#video-tab').css('background', '#c3bccf');
+    });
     </script>
 {% endblock %}

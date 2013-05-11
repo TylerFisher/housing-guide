@@ -8,6 +8,21 @@
 .padded {padding: 24px;}
 .border-bottom {border-bottom: 1px solid $light-purple;}
 .background-purple {background-color: $dark-purple;}
+.display-desktop {
+	@media (max-width: $desk-start) {
+		display: none;
+	}
+}
+.hidden-desktop {
+	@media (min-width: $desk-start) {
+		display: none;
+	}
+}
+@mixin padded-grid-item {
+	@media (max-width: $lap-start) {
+		padding-left: 48px;
+	}
+}
 
 // NBN Logo & Purple Bar
 #bar {
@@ -60,14 +75,10 @@
 		}
 	}
 }
-#table-container {
-	padding-right: 24px;
-}
 
 // Filter 
 #filter-container {
 	padding-left: 48px;
-	padding-right: 24px;
 	@media (max-width: $desk-start) {
 		border-bottom: 1px solid $light-purple;
 	}
@@ -81,20 +92,19 @@
 		user-select: none;
 		li {
 			list-style-type: none;
-			line-height: 80%;
+			line-height: 115%;
 			label {
 				display: inline;
 			}
 			@media (max-width: $desk-start) {
 				margin-left: 0.5em;
-				float: left;
 			}
 		}
 		@media (min-width: $lap-start) and (max-width: $desk-start) {
 			display: inline;
 		}
 		input {
-			font-size: 75%;
+			font-size: 100%;
 		}
 	}
 }
@@ -118,6 +128,10 @@
 }
 
 // Table
+#table-container {
+	padding-right: 24px;
+	@include padded-grid-item;
+}
 table {
 	margin-top: 31px;
 	tr {
@@ -131,8 +145,12 @@ table {
 		background-color: $yellow;
 	}
 	thead tr {
-		background-color: $dark-purple;
-		color: #fff;
+		font-family: $proxima;
+		background-color: $light-purple;
+		color: $dark-gray;
+	}
+	thead tr td:first-child {
+		padding-left: 1%;
 	}	
 }
 td {
@@ -154,6 +172,18 @@ td {
 }
 .dot.bad-fit {
 	background-color: $red;
+}
+#legend {
+	border: 1px solid $light-purple;
+	overflow: auto;
+	margin-bottom: 24px; 
+	p {
+		margin-right: 1%;
+	}
+}
+#legend-container {
+	width: 100%;
+	margin: 0 auto;
 }
 
 // Teasers
