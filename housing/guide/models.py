@@ -2,32 +2,29 @@ from django.contrib.gis.db import models
 
 class Dorm(models.Model):
     name = models.CharField(max_length=255, null=True)
-    dorm_type = models.CharField(max_length=40)
+    short_name = models.CharField(max_length=100)
+    dorm_type = models.CharField(max_length=40, null=True)
     has_ac = models.BooleanField()
-    size = models.IntegerField()
-    campus_side = models.CharField(max_length=10)
-    address = models.CharField(max_length=60)
+    size = models.IntegerField(null=True)
+    campus_side = models.CharField(max_length=10, null=True)
+    address = models.CharField(max_length=60, null=True)
     dining = models.BooleanField()
     female_only = models.BooleanField()
     freshmen_only = models.BooleanField()
     open_gender = models.BooleanField()
-    percent_freshmen = models.FloatField()
-    percent_sophomores = models.FloatField()
-    percent_juniors = models.FloatField()
-    percent_seniors = models.FloatField()
-    style = models.CharField(max_length=10)
-    blurb = models.TextField()
-    singles = models.IntegerField()
-    doubles = models.IntegerField()
-    cost = models.FloatField()
-    master = models.CharField(max_length=40)
-    dist_to_tech = models.FloatField()
-    dist_to_norris = models.FloatField()
-    dist_to_bk = models.FloatField()
-    dist_to_kresge = models.FloatField()
+    style = models.CharField(max_length=10, null=True)
+    blurb = models.TextField(null=True)
+    singles = models.IntegerField(null=True)
+    doubles = models.IntegerField(null=True)
+    cost = models.FloatField(null=True)
+    master = models.CharField(max_length=40, null=True)
+    dist_to_tech = models.FloatField(null=True)
+    dist_to_norris = models.FloatField(null=True)
+    dist_to_bk = models.FloatField(null=True)
+    dist_to_kresge = models.FloatField(null=True)
+    room_dimensions = models.CharField(max_length=255, null=True)
 
     @classmethod
-
     def get_quotes(self):
        return Quote.objects.filter(story=self)
 
@@ -40,12 +37,6 @@ class Quote(models.Model):
     dorm = models.ForeignKey(Dorm, null=True, blank=True)
     def __unicode__(self):
         return self.name
-
-class Room(models.Model):
-    room_type = models.CharField(max_length=10)
-    dorm = models.ManyToManyField('Dorm')
-    sq_ft = models.IntegerField()
-    # shape = models.JSONField()
 
 class SlideshowImage(models.Model):
     """For building slideshows and attaching them to stories"""
