@@ -60,7 +60,7 @@ class SlideshowImage(models.Model):
     """For building slideshows and attaching them to stories"""
     name = models.CharField(max_length=50)
     dorm = models.ForeignKey(Dorm, null=True, blank=True)
-    image = models.ImageField(upload_to='uploads/%Y/%m/%d')
+    image = models.ImageField(upload_to='static/img/')
     caption = models.TextField(null=True, blank=True)
     def __unicode__(self):
         return self.name

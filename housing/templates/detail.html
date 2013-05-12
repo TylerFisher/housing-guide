@@ -33,7 +33,18 @@
 					<h3>Video</h3>
 				</div>
 				<div id="media-container" class="clear reduced-width">
-          <img src="{% static 'img/1.jpg' %}">
+          <div class="rslides_container">
+          <ul class="rslides">
+              {% for image in dorm.get_slideshow %}
+                  <li class="image">
+                      <img src="{{ image.image.url}}">
+                      {% if image.caption %}
+                          <span class="image-caption">{{ image.caption }}</span>
+                      {% endif %}
+                  </li>
+              {% endfor %}
+          </ul>
+          </div>
 					<div id="embed-container">
           </div>
 				</div>
@@ -123,6 +134,9 @@
         </div>
 		</div>
 	</div>
+
+
+
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
     <script src="{% static 'js/leaflet-providers.js' %}"></script>
