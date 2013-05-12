@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
 
 class Dorm(models.Model):
-    name = models.CharField(max_length=255, null=True)
+    name = models.CharField(max_length=255, null=True, unique=True, db_index=True)
     short_name = models.CharField(max_length=100)
     SLUG_LEN = 50
     slug = models.SlugField(max_length=SLUG_LEN+1, blank=True)
@@ -17,12 +17,11 @@ class Dorm(models.Model):
     female_only = models.BooleanField()
     freshmen_only = models.BooleanField()
     open_gender = models.BooleanField()
-    style = models.CharField(max_length=10, null=True)
     blurb = models.TextField(null=True)
     singles = models.IntegerField(null=True)
     doubles = models.IntegerField(null=True)
+    triples = models.IntegerField(null=True)
     cost = models.FloatField(null=True)
-    master = models.CharField(max_length=40, null=True)
     dist_to_tech = models.FloatField(null=True)
     dist_to_norris = models.FloatField(null=True)
     dist_to_bk = models.FloatField(null=True)
@@ -43,7 +42,6 @@ class Dorm(models.Model):
     def get_absolute_url(self):
         return reverse('guide.views.detail', kwargs={'dorm_slug': self.slug})
 
-    @classmethod
     def get_quotes(self):
        return Quote.objects.filter(dorm=self)
 
@@ -61,7 +59,7 @@ class Quote(models.Model):
 class SlideshowImage(models.Model):
     """For building slideshows and attaching them to stories"""
     name = models.CharField(max_length=50)
-    story = models.ForeignKey(Dorm, null=True, blank=True)
+    dorm = models.ForeignKey(Dorm, null=True, blank=True)
     image = models.ImageField(upload_to='uploads/%Y/%m/%d')
     caption = models.TextField(null=True, blank=True)
     def __unicode__(self):

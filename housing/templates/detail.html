@@ -50,7 +50,7 @@
          --><div class="grid__item one-whole lap-one-third stats-item">
             <p class="body-text"><span class="number">{{ dorm.doubles }}</span> doubles</p>
             <p class="body-text">+ <span class="number">{{ dorm.singles }}</span> singles</p>
-            <p class="body-text">+ <span class="number">5</span> triples</p>
+            <p class="body-text">+ <span class="number">{{ dorm.triples }}</span> triples</p>
             <p id="sum" class="body-text"><span class="number">115</span> residents</p>
           </div><!--
          --><div class="grid__item one-whole lap-one-third stats-item">
@@ -65,7 +65,6 @@
 				<div class="padding-top reduced-width">
 					<h3>What residents say</h3>
           {% for quote in dorm.get_quotes %}
-            <p>HAI</p>
   					<p class="body-text quote padding-top">&ldquo;{{ quote.text }}&rdquo;</p>
             <p class="quote-attr">{{ quote.source }}</p>
           {% endfor %}
@@ -104,7 +103,7 @@
           <div class="stats-item">
             <p class="body-text"><span class="number">{{dorm.doubles}}</span> doubles</p>
             <p class="body-text">+ <span class="number">{{dorm.singles}}</span> singles</p>
-            <p class="body-text">+ <span class="number">5</span> triples</p>
+            <p class="body-text">+ <span class="number">{{dorm.triples}}</span> triples</p>
             <p id="sum" class="body-text"><span class="number">{{dorm.size}}</span> residents</p>
           </div>
           <div class="stats-item">

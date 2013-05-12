@@ -18,5 +18,4 @@ class DormAdmin(admin.ModelAdmin):
     ]
 
 admin.site.register(Dorm, DormAdmin)
-admin.site.register(DormShapes)
 admin.site.register(Quote)
