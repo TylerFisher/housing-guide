@@ -5,7 +5,7 @@
 .no-padding {padding: 0em;}
 .padding-top {padding-top: 24px;}
 .padding-left {padding-left: 24px;}
-.padded {padding: 24px;}
+.padded {padding: 24px 24px 24px 0px;}
 .border-bottom {border-bottom: 1px solid $light-purple;}
 .background-purple {background-color: $dark-purple;}
 .display-desktop {
@@ -109,12 +109,15 @@
 	}
 }
 
-// Map
-#map-container {
-	padding-bottom: 24px;
+#explore-container {
 	@media (min-width: $desk-start) {
 		border-left: 1px solid $light-purple;
 	}
+}
+
+// Map
+#map-container {
+	padding-bottom: 24px;
 	@media (max-width: $desk-start) {
 		padding-left: 48px;
 	}
@@ -180,10 +183,6 @@ td {
 	p {
 		margin-right: 1%;
 	}
-}
-#legend-container {
-	width: 100%;
-	margin: 0 auto;
 }
 
 // Teasers
