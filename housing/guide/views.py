@@ -14,6 +14,7 @@ def ensure_get(request):
 
 def home(request):
     ensure_get(request)
+
     shapes = DormShapes.objects.all()
     if request.is_ajax():
         d = {}
@@ -25,7 +26,13 @@ def home(request):
             geojson['properties'] = properties
         return HttpResponse(json.dumps(d), mimetype='application/json')
 
-    return render_to_response('index.html')
+    dorms = Dorm.objects.all()
 
-def detail(request):
-    return render_to_response('detail.html')
+    return render_to_response('index.html', {
+            'dorms': dorms,
+        })
+
+def detail(request, dorm_slug):
+    dorm = get_object_or_404(Dorm, slug=dorm_slug)
+
+    return render_to_response('detail.html', { 'dorms': dorms })

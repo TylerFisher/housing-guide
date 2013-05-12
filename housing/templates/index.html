@@ -99,7 +99,7 @@
 		</div><!-- End filter grid item
 
 	 --><div id="explore-container" class="grid__item one-whole desk-four-fifths">
-	 		
+
 	 		<div class="grid">
 
 			 	<div id="map-container" class="grid__item one-whole lap-and-up-one-half padding-top">
@@ -119,118 +119,13 @@
 							</tr>
 						</thead>
 						<tbody>
-					<!--{% for dorm in dorms %}
+						{% for dorm in dorms %}
 							<tr>
-								<td><p class="body-text">{{ dorm.name }}</p></td>
+								<td><p class="body-text">{{ dorm.short_name }}</p></td>
 								<td><p class="body-text">{{ dorm.size }}</p></td>
 								<td><p class="body-text">{{ dorm.dorm_type }}</p></td>
 							</tr>
-						{% endfor %}-->
-							<tr>
-								<td><div class="dot perfect-fit"></div><p class="body-text">1835 Hinman</td>
-								<td><p class="body-text">100</td>
-								<td><p class="body-text">Hall</td>
-							</tr>
-							<tr>
-								<td><div class="dot perfect-fit"></div><p class="body-text">Allison</td>
-								<td><p class="body-text">300</td>
-								<td><p class="body-text">Community</td>
-							</tr>
-							<tr>
-								<td><div class="dot perfect-fit"></div><p class="body-text">Ayers</td>
-								<td><p class="body-text">88</td>
-								<td><p class="body-text">College</td>
-							</tr>
-							<tr>
-								<td><div class="dot perfect-fit"></div><p class="body-text">Bobb</p></td>
-								<td><p class="body-text">50</p></td>
-								<td><p class="body-text">Hall</p></td>
-							</tr>
-							<tr>
-								<td><div class="dot good-fit"></div><p class="body-text">Chapin</p></td>
-								<td><p class="body-text">7</p></td>
-								<td><p class="body-text">College</p></td>
-							</tr>
-							<tr>
-								<td><div class="dot good-fit"></div><p class="body-text">College of Cultural & Community Studies</p></td>
-								<td><p class="body-text">50</p></td>
-								<td><p class="body-text">College</p></td>
-							</tr>
-							<tr>
-								<td><div class="dot good-fit"></div><p class="body-text">GREEN house</p></td>
-								<td><p class="body-text">50</p></td>
-								<td><p class="body-text">College</p></td>
-							</tr>
-							<tr>
-								<td><div class="dot bad-fit"></div><p class="body-text">Communications Residential College</p></td>
-								<td><p class="body-text">28</p></td>
-								<td><p class="body-text">College</p></td>
-							</tr>
-							<tr>
-								<td><div class="dot bad-fit"></div><p class="body-text">Elder</p></td>
-								<td><p class="body-text">245</p></td>
-								<td><p class="body-text">Community</p></td>
-							</tr>
-							<tr>
-								<td><div class="dot bad-fit"></div><p class="body-text">Hobart</p></td>
-								<td><p class="body-text">59</p></td>
-								<td><p class="body-text">College</p></td>
-							</tr>
-							<tr>
-								<td><div class="dot bad-fit"></div><p class="body-text">Interfaith</p></td>
-								<td><p class="body-text">10</p></td>
-								<td><p class="body-text">College</p></td>
-							</tr>
-							<tr>
-								<td><div class="dot bad-fit"></div><p class="body-text">International Studies Residential College</p></td>
-								<td><p class="body-text">88</p></td>
-								<td><p class="body-text">College</p></td>
-							</tr>
-							<tr>
-								<td><div class="dot bad-fit"></div><p class="body-text">Jones</p></td>
-								<td><p class="body-text">59</p></td>
-								<td><p class="body-text">College</p></td>
-							</tr>
-							<tr>
-								<td><div class="dot bad-fit"></div><p class="body-text">NMQ</p></td>
-								<td><p class="body-text">20</p></td>
-								<td><p class="body-text">Hall</p></td>
-							</tr>
-							<tr>
-								<td><div class="dot bad-fit"></div><p class="body-text">PARC</p></td>
-								<td><p class="body-text">99</p></td>
-								<td><p class="body-text">College</p></td>
-							</tr>
-							<tr>
-								<td><div class="dot bad-fit"></div><p class="body-text">Rogers</p></td>
-								<td><p class="body-text">25</p></td>
-								<td><p class="body-text">Hall</p></td>
-							</tr>
-							<tr>
-								<td><div class="dot bad-fit"></div><p class="body-text">Sargent</p></td>
-								<td><p class="body-text">137</p></td>
-								<td><p class="body-text">Hall</p></td>
-							</tr>
-							<tr>
-								<td><div class="dot bad-fit"></div><p class="body-text">Shepard</p></td>
-								<td><p class="body-text">22</p></td>
-								<td><p class="body-text">College</p></td>
-							</tr>
-							<tr>
-								<td><div class="dot bad-fit"></div><p class="body-text">Slivka</p></td>
-								<td><p class="body-text">62</p></td>
-								<td><p class="body-text">College</p></td>
-							</tr>
-							<tr>
-								<td><div class="dot bad-fit"></div><p class="body-text">SMQ</p></td>
-								<td><p class="body-text">84</p></td>
-								<td><p class="body-text">Hall</p></td>
-							</tr>
-							<tr>
-								<td><div class="dot bad-fit"></div><p class="body-text">Willard</p></td>
-								<td><p class="body-text">33</p></td>
-								<td><p class="body-text">College</p></td>
-							</tr>
+						{% endfor %}
 						</tbody>
 					</table>
 					<div id="legend-container">
@@ -245,7 +140,7 @@
 					</div>
 				</div><!-- End table grid item -->
 			</div><!-- End explore grid item -->
-		
+
 		</div><!-- End nested grid container -->
 
 	</div><!-- End grid container -->
@@ -343,15 +238,15 @@
     var dorms = [
         {% for dorm in dorms %}
         {
-            'name': {{ dorm.short_name }},
-            'dormType': {{ dorm.dorm_type }},
+            'name': "{{ dorm.short_name }}",
+            'dormType': "{{ dorm.dorm_type }}",
             'size': {{ dorm.size }},
-            'campusSide': {{ dorm.campus_side }},
-            'hasAC': {{ dorm.has_ac }},
-            'hasDining': {{ dorm.dining }},
-            'freshmenOnly': {{ dorm.freshmen_only }},
-            'femaleOnly': {{ dorm.female_only }},
-            'openGender': {{ dorm.open_gender }}
+            'campusSide': "{{ dorm.campus_side }}",
+            'hasAC': {{ dorm.has_ac|lower }},
+            'hasDining': {{ dorm.dining|lower }},
+            'freshmenOnly': {{ dorm.freshmen_only|lower }},
+            'femaleOnly': {{ dorm.female_only|lower }},
+            'openGender': {{ dorm.open_gender|lower }}
         },
         {% endfor %}
     ];
