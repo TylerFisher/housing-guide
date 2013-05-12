@@ -5,7 +5,7 @@
 .no-padding {padding: 0em;}
 .padding-top {padding-top: 24px;}
 .padding-left {padding-left: 24px;}
-.padded {padding: 24px 24px 24px 0px;}
+.padded {padding: 24px;}
 .border-bottom {border-bottom: 1px solid $light-purple;}
 .background-purple {background-color: $dark-purple;}
 .display-desktop {
@@ -117,7 +117,6 @@
 
 // Map
 #map-container {
-	padding-bottom: 24px;
 	@media (max-width: $desk-start) {
 		padding-left: 48px;
 	}
@@ -136,7 +135,9 @@
 	@include padded-grid-item;
 }
 table {
-	margin-top: 31px;
+	@media (min-width: $lap-start) {
+		margin-top: 31px;
+	}
 	tr {
 		padding-left: 24px;
 		border-bottom: 1px solid $light-purple;
@@ -204,9 +205,4 @@ td {
 	@media (max-width: $lap-start) {
 		margin-top: 0px;
 	}
-}
-
-// About the Filters
-#filter-exp-container {
-
 }
