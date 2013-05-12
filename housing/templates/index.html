@@ -24,11 +24,11 @@
 				<div class="grid__item one-whole lap-one-fifth">
 					<ul>
 						<li>
-							<input type="checkbox" id="north-filter">
+							<input type="checkbox" class="filter" id="north-filter">
 							<label class="body-text" class="body-text" for="north-filter">North Campus</label>
 						</li>
 						<li>
-							<input type="checkbox" id="south-filter">
+							<input type="checkbox" class="filter" id="south-filter">
 							<label class="body-text" for="south-filter">South Campus</label>
 						</li>
 					</ul>
@@ -36,11 +36,11 @@
 			 --><div class="grid__item one-whole lap-one-fifth">
 					<ul>
 						<li>
-							<input type="checkbox" id="ac-filter">
+							<input type="checkbox" class="filter" id="ac-filter">
 							<label class="body-text" for="ac-filter">Has A.C.</label>
 						</li>
 						<li>
-							<input type="checkbox" id="dining-filter">
+							<input type="checkbox" class="filter" id="dining-filter">
 							<label class="body-text" for="dining-filter">Has dining hall</label>
 						</li>
 					</ul>
@@ -48,19 +48,19 @@
 			 --><div class="grid__item one-whole lap-one-fifth">
 					<ul>
 						<li>
-							<input type="checkbox" id="rescol-filter">
+							<input type="checkbox" class="filter" id="rescol-filter">
 							<label class="body-text" for="rescol-filter">Res College</label>
 						</li>
 						<li>
-							<input type="checkbox" id="rescol-filter">
-							<label class="body-text" for="rescol-filter">Res Community</label>
+							<input type="checkbox" class="filter" id="rescomm-filter">
+							<label class="body-text" for="rescomm-filter">Res Community</label>
 						</li>
 						<li>
-							<input type="checkbox" id="rescol-filter">
-							<label class="body-text" for="rescol-filter">Res Hall</label>
+							<input type="checkbox" class="filter" id="reshall-filter">
+							<label class="body-text" for="reshall-filter">Res Hall</label>
 						</li>
 						<li>
-							<input type="checkbox" id="freshmen-filter">
+							<input type="checkbox" class="filter" id="freshmen-filter">
 							<label class="body-text" for="freshmen-filter">Freshmen only</label>
 						</li>
 					</ul>
@@ -68,15 +68,15 @@
 			 --><div class="grid__item one-whole lap-one-fifth">
 					<ul>
 						<li>
-							<input type="checkbox" id="small-filter">
+							<input type="checkbox" class="filter" id="small-filter">
 							<label class="body-text" for="small-filter">Small</label>
 						</li>
 						<li>
-							<input type="checkbox" id="med-filter">
+							<input type="checkbox" class="filter" id="med-filter">
 							<label class="body-text" for="med-filter">Medium</label>
 						</li>
 						<li>
-							<input type="checkbox" id="large-filter">
+							<input type="checkbox" class="filter" id="large-filter">
 							<label class="body-text" for="large-filter">Large</label>
 						</li>
 					</ul>
@@ -84,20 +84,18 @@
 			 --><div class="grid__item one-whole lap-one-fifth">
 					<ul>
 						<li>
-							<input type="checkbox" id="male-filter">
-							<label class="body-text" for="male-filter">Male only</label>
-						</li>
-						<li>
-							<input type="checkbox" id="female-filter">
+							<input type="checkbox" class="filter" id="female-filter">
 							<label class="body-text" for="female-filter">Female only</label>
 						</li>
 						<li>
-							<input type="checkbox" id="opengender-filter">
+							<input type="checkbox" class="filter" id="opengender-filter">
 							<label class="body-text" for="opengender-filter">Open gender</label>
 						</li>
 					</ul>
 				</div>
 			</div>
+      <div id="temp">
+      </div>
 		</div><!-- End filter grid item
 
 	 --><div id="explore-container" class="grid__item one-whole desk-four-fifths">
@@ -340,5 +338,17 @@
             layer.bindPopup(feature.properties.name);
         }
     }
+
+    // dorm data
+
+    // interactive filtering
+    var selections = {};
+    $('.filter').change(function() { 
+        // update selections
+        $('.filter').map(function(i, elem) {
+            selections[$(elem).attr('id').split('-')[0]] = elem.checked;
+        });
+        console.log(selections);
+    });
     </script>
     {% endblock %}
