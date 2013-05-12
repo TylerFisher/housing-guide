@@ -75,12 +75,15 @@
 .stats-item {
     vertical-align: bottom;
 	margin-bottom: 24px;
+	@media (min-width: $lap-start) and (max-width: $desk-start) {
+		margin-bottom: 0px;
+	}
 }
 .stats-item:last-child {
 	margin-bottom: 0px;
 }
 #sum {
-	border-top: 1px solid $dark-gray;
+	border-top: 1px solid $light-gray;
 }
 
 // DETAIL SIDEBAR GRID ITEM (Contains map, room size)
