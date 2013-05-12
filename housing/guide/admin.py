@@ -7,9 +7,14 @@ class SlideShowImageInline(admin.StackedInline):
     model = SlideshowImage
     extra = 0
 
+class QuoteInline(admin.StackedInline):
+    model = Quote
+    extra = 0
+
 class DormAdmin(admin.ModelAdmin):
     inlines = [
         SlideShowImageInline,
+        QuoteInline,
     ]
 
 admin.site.register(Dorm, DormAdmin)

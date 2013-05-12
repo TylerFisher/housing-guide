@@ -1,8 +1,13 @@
 from django.contrib.gis.db import models
 
+from django.core.urlresolvers import reverse
+from django.template.defaultfilters import slugify
+
 class Dorm(models.Model):
     name = models.CharField(max_length=255, null=True)
     short_name = models.CharField(max_length=100)
+    SLUG_LEN = 50
+    slug = models.SlugField(max_length=SLUG_LEN+1, blank=True)
     dorm_type = models.CharField(max_length=40, null=True)
     has_ac = models.BooleanField()
     size = models.IntegerField(null=True)
@@ -24,17 +29,32 @@ class Dorm(models.Model):
     dist_to_kresge = models.FloatField(null=True)
     room_dimensions = models.CharField(max_length=255, null=True)
 
+    def __unicode__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        # set the slug if empty
+        if not self.slug:
+            len = self.SLUG_LEN
+            self.slug = slugify(self.short_name)[:len]
+
+        super(Dorm, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('guide.views.detail', kwargs={'dorm_slug': self.slug})
+
     @classmethod
     def get_quotes(self):
-       return Quote.objects.filter(story=self)
+       return Quote.objects.filter(dorm=self)
 
     def get_slideshow(self):
-       return SlideshowImage.objects.filter(story=self)
+       return SlideshowImage.objects.filter(dorm=self)
 
 class Quote(models.Model):
-    text = models.TextField()
-    source = models.TextField()
+    name = models.CharField(max_length=255)
     dorm = models.ForeignKey(Dorm, null=True, blank=True)
+    text = models.TextField(null=True, blank=True)
+    source = models.TextField(null=True, blank=True)
     def __unicode__(self):
         return self.name
 
