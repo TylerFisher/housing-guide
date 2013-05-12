@@ -176,13 +176,19 @@ td {
 .dot.bad-fit {
 	background-color: $red;
 }
-#legend {
+#legend-container {
 	border: 1px solid $light-purple;
 	overflow: auto;
 	margin-bottom: 24px; 
 	p {
 		margin-right: 1%;
 	}
+}
+#legend {
+	width: 16em;
+	overflow-x: auto;
+	overflow-y: hidden;
+	margin: 0 auto;
 }
 
 // Teasers
