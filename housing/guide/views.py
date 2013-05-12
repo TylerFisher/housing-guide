@@ -35,4 +35,17 @@ def home(request):
 def detail(request, dorm_slug):
     dorm = get_object_or_404(Dorm, slug=dorm_slug)
 
+    shapes = DormShapes.objects.all()
+    if request.is_ajax():
+        d = {}
+        for shape in shapes.geojson():
+            if shape.name == dorm.name:
+                geojson = json.loads(shape.geojson)
+                properties = {'name': shape.name}
+                geojson['id'] = shape.osm_id
+                d[shape.geojson] = geojson
+                geojson['properties'] = properties
+        return HttpResponse(json.dumps(d), mimetype='application/json')
+
+
     return render_to_response('detail.html', { 'dorm': dorm })

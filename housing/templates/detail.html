@@ -144,7 +144,7 @@
       var geojson;
       var map = L.map('small-map').setView([42.05504447993239,-87.6753830909729], 16);
       L.tileLayer.provider('MapQuestOpen.OSM').addTo(map);
-      $.getJSON('{% url "home" %}', function(data){
+      $.getJSON('{% url "detail" dorm_slug=dorm.slug %}', function(data){
             parse_map_data(data);
         });
       function parse_map_data(data){
@@ -152,6 +152,8 @@
             geojson = new L.GeoJSON(val, {
               onEachFeature: onEachFeature
             }).addTo(map);
+            var bounds = geojson.getBounds();
+            map.setView(bounds.getCenter(), 17);
         });
     }
     function onEachFeature(feature, layer) {
