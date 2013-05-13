@@ -122,7 +122,7 @@
 						<tbody>
 						{% for dorm in dorms %}
 							<tr>
-								<td><p class="body-text dorm-name"><a href="{% url 'guide.views.detail' dorm_slug=dorm.slug %}">{{ dorm.short_name }}</a></p></td>
+								<td><p class="body-text dorm-name" value="{{dorm.name}}"><a href="{% url 'guide.views.detail' dorm_slug=dorm.slug %}">{{ dorm.short_name }}</a></p></td>
 								<td><p class="body-text">{{ dorm.size }}</p></td>
 								<td><p class="body-text">{{ dorm.dorm_type }}</p></td>
 							</tr>
@@ -244,6 +244,12 @@
         }
     }
 
+    function changeMap(name, style) {
+    	$.each(jsonLayers, function(i, elem) {
+    		if (elem.name == name) elem.value.setStyle(style);
+    	})
+    }
+
     // dorm data
     var dorms = {
         {% for dorm in dorms %}
@@ -343,6 +349,9 @@
             $('.dorm-name').each(function(i, elem) {
                 var name = $(elem).text();
 
+                // name to match json
+                var jsonName = $(elem).attr("value");
+
                 // count number of criteria that match
                 var matchCount = 0;
                 var disagreements = 0;
@@ -356,14 +365,16 @@
                 }
                 if (matchCount == numSelected) {
                     $(elem).addClass('perfect-fit');
+                    changeMap(jsonName, perfectStyle);
                 } else if (disagreements <= (.6 * numSelected)) {
                     $(elem).addClass('good-fit');
+                    changeMap(jsonName, mehStyle);
                 } else {
                     $(elem).addClass('bad-fit');
+                    changeMap(jsonName, notStyle);
                 }
-
                 // sort
-                sortTable();
+                sortTable();;
             });
         } else {
             // nothing is selected; remove dots and exit
