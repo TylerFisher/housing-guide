@@ -386,7 +386,7 @@
     });
 
     // clear filter button
-    $('.clear-filter').click(function() {
+    var clearFilter = function() {
         $('.filter').removeAttr('checked');
         $('.dorm-name').children('.dot').remove();
         $('.dorm-name').removeClass('perfect-fit good-fit bad-fit');
@@ -396,6 +396,10 @@
         $('.dorm-name').each(function(i, elem) {
         	changeMap($(elem).attr("value"), defaultStyle);
         });
-    });
+    };
+    $('.clear-filter').click(clearFilter);
+
+    // clear filter on page load
+    clearFilter();
     </script>
     {% endblock %}
