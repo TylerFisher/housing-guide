@@ -19,7 +19,8 @@
 	<div class="grid clear border-bottom">
 
 		<div id="filter-container" class="grid__item one-whole desk-one-fifth padded">
-			<h4>Filter<a href="#about-filters"><span class="epsilon"> or read more</span></a></h4>
+			<h4>Filter <a href="#about-filters"><span class="epsilon">or read more</span></a></h4>
+      <h4 class="clear-filter"><a href="#"><span class="epsilon">(clear filter)</span></a></h4>
 			<div class="grid">
 				<div class="grid__item one-whole lap-one-fifth">
 					<ul>
@@ -337,14 +338,18 @@
                 } else {
                     $(elem).addClass('bad-fit');
                 }
-
-                console.log(name + ": " + matchCount + "," + numSelected);
             });
         } else {
             // nothing is selected; remove dots and exit
             $('.dorm-name').children('.dot').remove();
             return;
         }
+    });
+
+    // clear filter button
+    $('.clear-filter').click(function() {
+        $('.filter').removeAttr('checked');
+        $('.dorm-name').children('.dot').remove();
     });
     </script>
     {% endblock %}
