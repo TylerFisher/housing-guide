@@ -8,4 +8,5 @@ urlpatterns = patterns('',
     url(r'^$', 'guide.views.home', name='home'),
     url(r'^hall/(?P<dorm_slug>[\w\-]+)/$', 'guide.views.detail', name='detail'),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^json/', 'guide.views.get_shapes', name='get_shapes'),
 )

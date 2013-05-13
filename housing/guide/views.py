@@ -13,19 +13,6 @@ def ensure_get(request):
         raise Http404
 
 def home(request):
-    ensure_get(request)
-
-    shapes = DormShapes.objects.all()
-    if request.is_ajax():
-        d = {}
-        for shape in shapes.geojson():
-            geojson = json.loads(shape.geojson)
-            properties = {'name': shape.name}
-            geojson['id'] = shape.osm_id
-            d[shape.geojson] = geojson
-            geojson['properties'] = properties
-        return HttpResponse(json.dumps(d), mimetype='application/json')
-
     dorms = Dorm.objects.all()
 
     return render_to_response('index.html', {
@@ -49,3 +36,18 @@ def detail(request, dorm_slug):
 
 
     return render_to_response('detail.html', { 'dorm': dorm })
+
+def get_shapes(request):
+    ensure_get(request)
+
+    shapes = DormShapes.objects.all()
+    if request.is_ajax():
+        d = {}
+        for shape in shapes.geojson():
+            geojson = json.loads(shape.geojson)
+            properties = {'name': shape.name}
+            geojson['id'] = shape.osm_id
+            d[shape.geojson] = geojson
+            geojson['properties'] = properties
+        return HttpResponse(json.dumps(d), mimetype='application/json')
+

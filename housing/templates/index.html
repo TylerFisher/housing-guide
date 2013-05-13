@@ -212,7 +212,7 @@
       	]
       }).setView([42.05504447993239,-87.6753830909729], 15);
       L.tileLayer.provider('MapQuestOpen.OSM').addTo(map);
-      $.getJSON('{% url "home" %}', function(data){
+      $.getJSON('{% url "get_shapes" %}', function(data){
             parse_map_data(data);
         });
       function parse_map_data(data){
