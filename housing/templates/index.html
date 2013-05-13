@@ -255,17 +255,17 @@
         {% for dorm in dorms %}
         "{{ dorm.short_name }}":
         {
-            {% if dorm.dorm_type == "Residence Hall" %}
+            {% if dorm.dorm_type == "Hall" %}
             'reshall': true,
             {% else %}
             'reshall': false,
             {% endif %}
-            {% if dorm.dorm_type == "Residential College" %}
+            {% if dorm.dorm_type == "College" %}
             'rescol': true,
             {% else %}
             'rescol': false,
             {% endif %}
-            {% if dorm.dorm_type == "Residential Community" %}
+            {% if dorm.dorm_type == "Community" %}
             'rescomm': true,
             {% else %}
             'rescomm': false,
@@ -330,7 +330,7 @@
     var selections = {};
     var numCriteria = $('.filter').length;
 
-    $('.filter').change(function() { 
+    $('.filter').change(function() {
         // update selections
         $('.filter').map(function(i, elem) {
             selections[$(elem).attr('id').split('-')[0]] = elem.checked;
