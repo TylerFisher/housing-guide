@@ -168,13 +168,16 @@ td {
 	border-radius: 8px;
 	margin: 7px;
 }
+.perfect-fit > .dot,
 .dot.perfect-fit {
 	background-color: $green;
 }
-.dot.good-fit {
+.good-fit > .dot,
+.dot.good-fit{
 	background-color: $yellow;
 }
-.dot.bad-fit {
+.bad-fit > .dot,
+.dot.bad-fit{
 	background-color: $red;
 }
 #legend-container {
