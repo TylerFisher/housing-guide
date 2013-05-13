@@ -9,7 +9,7 @@
 		 --><div class="grid__item one-whole desk-one-third no-padding">
 				<div id="search-container">
 					<label for="searchbox"><span class="delta">Search</span><span class="epsilon"> by dorm name</span></label>
-					<input id="searchbox" type="text" data-provide="typeahead" autocomplete="off">	
+					<input id="searchbox" type="text" data-provide="typeahead" autocomplete="off">
 				</div>
 			</div>
 		</div>
@@ -18,22 +18,33 @@
 	<div class="grid">
 		<div id="detail-main-container" class="grid__item one-whole desk-three-quarters float-right">
 			<div>
-				<h2>East Fairchild (Communications Residential College)</h2>
-        <h3>1855 Sheridan Road</h3>
-				<p class="body-text reduced-width padding-top">East Fairchild, also known as Communications Residential College, is a smaller dorm geared toward students interested in journalism, film and media. Located on the southern tip of campus, the hall houses mostly freshmen and sophomores.</p>
+				<h2>{{ dorm.name }}</h2>
+        <h3>{{ dorm.address }}</h3>
+				<p class="body-text reduced-width padding-top">{{ dorm.blurb }}</p>
 			</div>
 			<div class="padding-top">
         <div id="photo-tab" class="tab float-left" >
 					<img src="{% static 'img/photo-icon.png' %}">
 					<h3>Photo</h3>
 				</div>
-      
+
 				<div id="video-tab" class="tab float-left">
           <img src="{% static 'img/video-icon.png' %}">
 					<h3>Video</h3>
-				</div> 
+				</div>
 				<div id="media-container" class="clear reduced-width">
-          <img src="{% static 'img/1.jpg' %}">
+          <div class="rslides_container">
+          <ul class="rslides">
+              {% for image in dorm.get_slideshow %}
+                  <li class="image">
+                      <img src="{{ image.image.url}}">
+                      {% if image.caption %}
+                          <span class="image-caption">{{ image.caption }}</span>
+                      {% endif %}
+                  </li>
+              {% endfor %}
+          </ul>
+          </div>
 					<div id="embed-container">
           </div>
 				</div>
@@ -42,15 +53,15 @@
         <div class="grid padding-top hidden-desktop">
           <div class="grid__item one-whole lap-one-third stats-item">
             <p class="body-text">South campus</p>
-            <p class="body-text"><span class="number">15</span> minute walk to Tech</p>
-            <p class="body-text"><span class="number">8</span> minute walk to Norris</p>
-            <p class="body-text"><span class="number">5</span> minute walk to Kresge</p>
-            <p class="body-text"><span class="number">2</span> minute walk to Burger King</p>
+            <p class="body-text"><span class="number">{{ dorm.dist_to_tech|floatformat }}</span> minute walk to Tech</p>
+            <p class="body-text"><span class="number">{{ dorm.dist_to_norris|floatformat }}</span> minute walk to Norris</p>
+            <p class="body-text"><span class="number">{{ dorm.dist_to_kresge|floatformat }}</span> minute walk to Kresge</p>
+            <p class="body-text"><span class="number">{{ dorm.dist_to_bk|floatformat }}</span> minute walk to Burger King</p>
           </div><!--
          --><div class="grid__item one-whole lap-one-third stats-item">
-            <p class="body-text"><span class="number">100</span> doubles</p>
-            <p class="body-text">+ <span class="number">10</span> singles</p>
-            <p class="body-text">+ <span class="number">5</span> triples</p>
+            <p class="body-text"><span class="number">{{ dorm.doubles }}</span> doubles</p>
+            <p class="body-text">+ <span class="number">{{ dorm.singles }}</span> singles</p>
+            <p class="body-text">+ <span class="number">{{ dorm.triples }}</span> triples</p>
             <p id="sum" class="body-text"><span class="number">115</span> residents</p>
           </div><!--
          --><div class="grid__item one-whole lap-one-third stats-item">
@@ -61,14 +72,16 @@
             <p class="body-text">$<span class="number">2642</span> per quarter</p>
           </div>
         </div>
-        
+
 				<div class="padding-top reduced-width">
 					<h3>What residents say</h3>
+          {% for quote in dorm.get_quotes %}
+  					<p class="body-text quote padding-top">&ldquo;{{ quote.text }}&rdquo;</p>
+            <p class="quote-attr">{{ quote.source }}</p>
+          {% endfor %}
 
-					<p class="body-text quote padding-top">&ldquo;Very clique-y. If you're not an RTVF major, you will feel left out. The sophomores are already best friends so it's hard for the freshmen to fit in.&rdquo;</p>
-          <p class="quote-attr">Tyler Fisher, Bienan freshman</p>
 
-					<p class="body-text quote">&ldquo;Most in the dorm are RTVF or journalism majors, which makes it very nice for those people, but other majors are not left out either. CRC has a lot of very cool traditions.&rdquo;</p>
+					<!-- <p class="body-text quote">&ldquo;Most in the dorm are RTVF or journalism majors, which makes it very nice for those people, but other majors are not left out either. CRC has a lot of very cool traditions.&rdquo;</p>
           <p class="quote-attr">Hilary Fung, Medill senior</p>
 
 					<p class="body-text quote">&ldquo;This dorm should have been renovated twenty years ago. An alum came back who lived here in the 80s and said he had the same furniture.&rdquo;</p>
@@ -81,7 +94,7 @@
           <p class="quote-attr">Hilary Zhu, Superhuman</p>
 
 					<p class="body-text quote">&ldquo;If you are fairly sarcastic, enjoy messing with people, internet memes, and don't necessarily need to party 24/7, CRC is a great dorm.&rdquo;</p>
-          <p class="quote-attr">Dan Hill, Medill senior</p>
+          <p class="quote-attr">Dan Hill, Medill senior</p> -->
 
 				</div>
 			</div>
@@ -92,28 +105,38 @@
       <h3 class="padding-top display-desktop">Vital stats</h3>
         <div class="display-desktop">
           <div class="padding-top stats-item">
-            <p class="body-text">South campus</p>
-            <p class="body-text"><span class="number">15</span> minute walk to Tech</p>
-            <p class="body-text"><span class="number">8</span> minute walk to Norris</p>
-            <p class="body-text"><span class="number">5</span> minute walk to Kresge</p>
-            <p class="body-text"><span class="number">2</span> minute walk to Burger King</p>
+            <p class="body-text">{{dorm.campus_side}} campus</p>
+            <p class="body-text"><span class="number">{{ dorm.dist_to_tech|floatformat }}</span> minute walk to Tech</p>
+            <p class="body-text"><span class="number">{{ dorm.dist_to_norris|floatformat }}</span> minute walk to Norris</p>
+            <p class="body-text"><span class="number">{{ dorm.dist_to_kresge|floatformat }}</span> minute walk to Kresge</p>
+            <p class="body-text"><span class="number">{{ dorm.dist_to_bk|floatformat }}</span> minute walk to Burger King</p>
           </div>
           <div class="stats-item">
-            <p class="body-text"><span class="number">100</span> doubles</p>
-            <p class="body-text">+ <span class="number">10</span> singles</p>
-            <p class="body-text">+ <span class="number">5</span> triples</p>
-            <p id="sum" class="body-text"><span class="number">115</span> residents</p>
+            <p class="body-text"><span class="number">{{dorm.doubles}}</span> doubles</p>
+            <p class="body-text">+ <span class="number">{{dorm.singles}}</span> singles</p>
+            <p class="body-text">+ <span class="number">{{dorm.triples}}</span> triples</p>
+            <p id="sum" class="body-text"><span class="number">{{dorm.size}}</span> residents</p>
           </div>
           <div class="stats-item">
-            <p class="body-text">No A.C.</p>
-            <p class="body-text">Closest dining hall: Hinman
-            <p class="body-text">Residential college</p>
-            <p class="body-text">Room size: 14'6" by 11'7"</p>
-            <p class="body-text">$<span class="number">2642</span> per quarter</p>
+            {% if dorm.has_ac %}
+              <p class="body-text">Air conditioning</p>
+            {% endif %}
+            {% if not dorm.has_ac %}
+              <p class="body-text">No air conditioning</p>
+            {% endif %}
+            {% if dorm.dining %}
+              <p class="body-text">Dining hall in building</p>
+            {% endif %}
+            <p class="body-text">{{ dorm.dorm_type }}</p>
+            <p class="body-text">Room size: {{dorm.room_dimensions}}</p>
+            <p class="body-text">$<span class="number">{{dorm.cost|floatformat}}</span> per quarter</p>
           </div>
         </div>
 		</div>
 	</div>
+
+
+
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
     <script src="{% static 'js/leaflet-providers.js' %}"></script>
@@ -121,7 +144,7 @@
       var geojson;
       var map = L.map('small-map').setView([42.05504447993239,-87.6753830909729], 16);
       L.tileLayer.provider('MapQuestOpen.OSM').addTo(map);
-      $.getJSON('{% url "home" %}', function(data){
+      $.getJSON('{% url "detail" dorm_slug=dorm.slug %}', function(data){
             parse_map_data(data);
         });
       function parse_map_data(data){
@@ -129,6 +152,8 @@
             geojson = new L.GeoJSON(val, {
               onEachFeature: onEachFeature
             }).addTo(map);
+            var bounds = geojson.getBounds();
+            map.setView(bounds.getCenter(), 17);
         });
     }
     function onEachFeature(feature, layer) {

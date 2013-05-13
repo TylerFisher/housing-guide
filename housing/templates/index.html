@@ -121,7 +121,7 @@
 						<tbody>
 						{% for dorm in dorms %}
 							<tr>
-								<td><p class="body-text">{{ dorm.short_name }}</p></td>
+								<td><p class="body-text"><a href="{% url 'guide.views.detail' dorm_slug=dorm.slug %}">{{ dorm.short_name }}</a></p></td>
 								<td><p class="body-text">{{ dorm.size }}</p></td>
 								<td><p class="body-text">{{ dorm.dorm_type }}</p></td>
 							</tr>
