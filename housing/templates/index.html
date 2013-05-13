@@ -390,6 +390,11 @@
         $('.dorm-name').children('.dot').remove();
         $('.dorm-name').removeClass('perfect-fit good-fit bad-fit');
         sortTable();
+
+        // clear the map
+        $('.dorm-name').each(function(i, elem) {
+        	changeMap($(elem).attr("value"), defaultStyle);
+        });
     });
     </script>
     {% endblock %}
