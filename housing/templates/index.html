@@ -19,16 +19,17 @@
 	<div class="grid clear border-bottom">
 
 		<div id="filter-container" class="grid__item one-whole desk-one-fifth padded">
-			<h4>Filter<a href="#about-filters"><span class="epsilon"> or read more</span></a></h4>
+			<h4>Filter <a href="#about-filters"><span class="epsilon">or read more</span></a></h4>
+      <h4 class="clear-filter"><a><span class="epsilon">(clear filter)</span></a></h4>
 			<div class="grid">
 				<div class="grid__item one-whole lap-one-fifth">
 					<ul>
 						<li>
-							<input type="checkbox" id="north-filter">
+							<input type="radio" name="side" class="filter" id="north-filter">
 							<label class="body-text" class="body-text" for="north-filter">North Campus</label>
 						</li>
 						<li>
-							<input type="checkbox" id="south-filter">
+							<input type="radio" name="side" class="filter" id="south-filter">
 							<label class="body-text" for="south-filter">South Campus</label>
 						</li>
 					</ul>
@@ -36,47 +37,31 @@
 			 --><div class="grid__item one-whole lap-one-fifth">
 					<ul>
 						<li>
-							<input type="checkbox" id="ac-filter">
-							<label class="body-text" for="ac-filter">Has A.C.</label>
-						</li>
-						<li>
-							<input type="checkbox" id="dining-filter">
-							<label class="body-text" for="dining-filter">Has dining hall</label>
-						</li>
-					</ul>
-				</div><!--
-			 --><div class="grid__item one-whole lap-one-fifth">
-					<ul>
-						<li>
-							<input type="checkbox" id="rescol-filter">
+							<input type="radio" name="type" class="filter" id="rescol-filter">
 							<label class="body-text" for="rescol-filter">Res College</label>
 						</li>
 						<li>
-							<input type="checkbox" id="rescol-filter">
-							<label class="body-text" for="rescol-filter">Res Community</label>
+							<input type="radio" name="type" class="filter" id="rescomm-filter">
+							<label class="body-text" for="rescomm-filter">Res Community</label>
 						</li>
 						<li>
-							<input type="checkbox" id="rescol-filter">
-							<label class="body-text" for="rescol-filter">Res Hall</label>
-						</li>
-						<li>
-							<input type="checkbox" id="freshmen-filter">
-							<label class="body-text" for="freshmen-filter">Freshmen only</label>
+							<input type="radio" name="type" class="filter" id="reshall-filter">
+							<label class="body-text" for="reshall-filter">Res Hall</label>
 						</li>
 					</ul>
 				</div><!--
 			 --><div class="grid__item one-whole lap-one-fifth">
 					<ul>
 						<li>
-							<input type="checkbox" id="small-filter">
+							<input type="radio" name="size" class="filter" id="small-filter">
 							<label class="body-text" for="small-filter">Small</label>
 						</li>
 						<li>
-							<input type="checkbox" id="med-filter">
+							<input type="radio" name="size" class="filter" id="med-filter">
 							<label class="body-text" for="med-filter">Medium</label>
 						</li>
 						<li>
-							<input type="checkbox" id="large-filter">
+							<input type="radio" name="size" class="filter" id="large-filter">
 							<label class="body-text" for="large-filter">Large</label>
 						</li>
 					</ul>
@@ -84,16 +69,34 @@
 			 --><div class="grid__item one-whole lap-one-fifth">
 					<ul>
 						<li>
-							<input type="checkbox" id="female-filter">
+							<input type="checkbox" class="filter" id="ac-filter">
+							<label class="body-text" for="ac-filter">Has A.C.</label>
+						</li>
+						<li>
+							<input type="checkbox" class="filter" id="dining-filter">
+							<label class="body-text" for="dining-filter">Has dining hall</label>
+						</li>
+					</ul>
+				</div><!--
+			 --><div class="grid__item one-whole lap-one-fifth">
+					<ul>
+						<li>
+							<input type="checkbox" class="filter" id="freshmen-filter">
+							<label class="body-text" for="freshmen-filter">Freshmen only</label>
+						</li>
+						<li>
+							<input type="checkbox" class="filter" id="female-filter">
 							<label class="body-text" for="female-filter">Female only</label>
 						</li>
 						<li>
-							<input type="checkbox" id="opengender-filter">
+							<input type="checkbox" class="filter" id="opengender-filter">
 							<label class="body-text" for="opengender-filter">Open gender</label>
 						</li>
 					</ul>
 				</div>
 			</div>
+      <div id="temp">
+      </div>
 		</div><!-- End filter grid item
 
 	 --><div id="explore-container" class="grid__item one-whole desk-four-fifths">
@@ -119,7 +122,7 @@
 						<tbody>
 						{% for dorm in dorms %}
 							<tr>
-								<td><p class="body-text"><a href="{% url 'guide.views.detail' dorm_slug=dorm.slug %}">{{ dorm.short_name }}</a></p></td>
+								<td><p class="body-text dorm-name"><a href="{% url 'guide.views.detail' dorm_slug=dorm.slug %}">{{ dorm.short_name }}</a></p></td>
 								<td><p class="body-text">{{ dorm.size }}</p></td>
 								<td><p class="body-text">{{ dorm.dorm_type }}</p></td>
 							</tr>
@@ -240,5 +243,142 @@
             layer.bindPopup(feature.properties.name);
         }
     }
+
+    // dorm data
+    var dorms = {
+        {% for dorm in dorms %}
+        "{{ dorm.short_name }}":
+        {
+            {% if dorm.dorm_type == "Residence Hall" %}
+            'reshall': true,
+            {% else %}
+            'reshall': false,
+            {% endif %}
+            {% if dorm.dorm_type == "Residential College" %}
+            'rescol': true,
+            {% else %}
+            'rescol': false,
+            {% endif %}
+            {% if dorm.dorm_type == "Residential Community" %}
+            'rescomm': true,
+            {% else %}
+            'rescomm': false,
+            {% endif %}
+            {% if dorm.campus_side == "North" %}
+            'north': true,
+            'south': false,
+            {% else %}
+            'north': false,
+            'south': true,
+            {% endif %}
+            {% if dorm.size <= 100 %}
+            'small': true,
+            'med': false,
+            'large': false,
+            {% endif %}
+            {% if dorm.size > 100 and dorm.size <= 200 %}
+            'small': false,
+            'med': true,
+            'large': false,
+            {% endif %}
+            {% if dorm.size > 200 %}
+            'small': false,
+            'med': false,
+            'large': true,
+            {% endif %}
+            'ac': {{ dorm.has_ac|lower }},
+            'dining': {{ dorm.dining|lower }},
+            'freshmen': {{ dorm.freshmen_only|lower }},
+            'female': {{ dorm.female_only|lower }},
+            'opengender': {{ dorm.open_gender|lower }}
+        },
+        {% endfor %}
+    };
+
+    // return true if any property of an object is true
+    var count = function(obj) {
+        var num = 0;
+        for (var prop in obj) {
+            if (obj[prop]) {
+                num += 1;
+            }
+        }
+        return num;
+    };
+
+    // sort table of dorms
+    var compareDorms = function(a, b) {
+        return $(a).find('.dorm-name').text() < $(b).find('.dorm-name').text()? -1 : 1;
+    }
+    var sortTable = function() {
+        // alphabetize
+        var rows = $.makeArray($('tr:has(.dorm-name)').remove());
+        rows.sort(compareDorms);
+        $('tbody').append($(rows));
+        $('.dorm-name.bad-fit').parent().parent().prependTo($('tbody'));
+        $('.dorm-name.good-fit').parent().parent().prependTo($('tbody'));
+        $('.dorm-name.perfect-fit').parent().parent().prependTo($('tbody'));
+    }
+
+    // interactive filtering
+    var selections = {};
+    var numCriteria = $('.filter').length;
+
+    $('.filter').change(function() { 
+        // update selections
+        $('.filter').map(function(i, elem) {
+            selections[$(elem).attr('id').split('-')[0]] = elem.checked;
+        });
+
+        var numSelected = count(selections);
+        if (numSelected) {
+            // at least one is selected; display filter criteria
+            if ($('.dot').length < 4) {
+                // add dots
+                $('.dorm-name').prepend('<div class="dot"></div>');
+            }
+
+            // update fits
+            $('.dorm-name').removeClass('perfect-fit good-fit bad-fit');
+            $('.dorm-name').each(function(i, elem) {
+                var name = $(elem).text();
+
+                // count number of criteria that match
+                var matchCount = 0;
+                var disagreements = 0;
+                for (var prop in selections) {
+                    if (selections[prop] && dorms[name][prop]) {
+                        matchCount += 1;
+                    }
+                    if (selections[prop] && !dorms[name][prop]) {
+                        disagreements += 1;
+                    }
+                }
+                if (matchCount == numSelected) {
+                    $(elem).addClass('perfect-fit');
+                } else if (disagreements <= (.6 * numSelected)) {
+                    $(elem).addClass('good-fit');
+                } else {
+                    $(elem).addClass('bad-fit');
+                }
+
+                // sort
+                sortTable();
+            });
+        } else {
+            // nothing is selected; remove dots and exit
+            $('.dorm-name').children('.dot').remove();
+            sortTable();
+            return;
+        }
+    });
+
+    // clear filter button
+    $('.clear-filter').click(function() {
+        $('.filter').removeAttr('checked');
+        $('.dorm-name').children('.dot').remove();
+        $('.dorm-name').removeClass('perfect-fit good-fit bad-fit');
+        sortTable();
+    });
     </script>
     {% endblock %}
