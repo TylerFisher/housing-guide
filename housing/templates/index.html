@@ -204,10 +204,12 @@
     <script type="text/javascript">
       var geojson;
 
-      var defaultStyle = {'weight': '0', fillColor: '#268BD2', fillOpacity: '1'};
+      var defaultStyle = {'weight': '0', fillColor: '#381f5e', fillOpacity: '1'};
       var perfectStyle = {'weight': '0', fillColor: '#199e8d', fillOpacity: '1'};
       var mehStyle = {'weight': '.5', fillColor: '#e68c1a', fillOpacity: '.5', 'color' : 'black'};
       var notStyle = {'weight': '0', fillColor: '#cd2a2b', fillOpacity: '.5'};
+
+      jsonLayers = []; // will store each json layer as it is added to map to change later
 
       var map = L.map('map', {
       	minZoom: 14,
@@ -229,6 +231,7 @@
               	return defaultStyle;
               }
             }).addTo(map);
+            jsonLayers.push({name: val.properties.name, value: geojson}); // jsonLayers[].value.setStyle() to change style
         });
     }
     function onEachFeature(feature, layer) {
