@@ -203,6 +203,12 @@
     <script src="{% static 'js/leaflet-providers.js' %}"></script>
     <script type="text/javascript">
       var geojson;
+
+      var defaultStyle = {'weight': '0', fillColor: '#268BD2', fillOpacity: '1'};
+      var perfectStyle = {'weight': '0', fillColor: '#199e8d', fillOpacity: '1'};
+      var mehStyle = {'weight': '.5', fillColor: '#e68c1a', fillOpacity: '.5', 'color' : 'black'};
+      var notStyle = {'weight': '0', fillColor: '#cd2a2b', fillOpacity: '.5'};
+
       var map = L.map('map', {
       	minZoom: 14,
       	maxZoom: 18,
@@ -220,7 +226,7 @@
             geojson = new L.GeoJSON(val, {
               onEachFeature: onEachFeature,
               style: function(feature) {
-              	return {'weight': '0', fillColor: '#268BD2', fillOpacity: '1'};
+              	return defaultStyle;
               }
             }).addTo(map);
         });
