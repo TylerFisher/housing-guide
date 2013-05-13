@@ -180,6 +180,9 @@ td {
 .dot.bad-fit{
 	background-color: $red;
 }
+.clear-filter {
+    cursor: pointer;
+}
 #legend-container {
 	border: 1px solid $light-purple;
 	overflow: auto;

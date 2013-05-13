@@ -20,7 +20,7 @@
 
 		<div id="filter-container" class="grid__item one-whole desk-one-fifth padded">
 			<h4>Filter <a href="#about-filters"><span class="epsilon">or read more</span></a></h4>
-      <h4 class="clear-filter"><a href="#"><span class="epsilon">(clear filter)</span></a></h4>
+      <h4 class="clear-filter"><a><span class="epsilon">(clear filter)</span></a></h4>
 			<div class="grid">
 				<div class="grid__item one-whole lap-one-fifth">
 					<ul>
@@ -297,6 +297,20 @@
         return num;
     };
 
+    // sort table of dorms
+    var compareDorms = function(a, b) {
+        return $(a).find('.dorm-name').text() < $(b).find('.dorm-name').text()? -1 : 1;
+    }
+    var sortTable = function() {
+        // alphabetize
+        var rows = $.makeArray($('tr:has(.dorm-name)').remove());
+        rows.sort(compareDorms);
+        $('tbody').append($(rows));
+        $('.dorm-name.bad-fit').parent().parent().prependTo($('tbody'));
+        $('.dorm-name.good-fit').parent().parent().prependTo($('tbody'));
+        $('.dorm-name.perfect-fit').parent().parent().prependTo($('tbody'));
+    }
+
     // interactive filtering
     var selections = {};
     var numCriteria = $('.filter').length;
@@ -338,10 +352,14 @@
                 } else {
                     $(elem).addClass('bad-fit');
                 }
+
+                // sort
+                sortTable();
             });
         } else {
             // nothing is selected; remove dots and exit
             $('.dorm-name').children('.dot').remove();
+            sortTable();
             return;
         }
     });
@@ -350,6 +368,8 @@
     $('.clear-filter').click(function() {
         $('.filter').removeAttr('checked');
         $('.dorm-name').children('.dot').remove();
+        $('.dorm-name').removeClass('perfect-fit good-fit bad-fit');
+        sortTable();
     });
     </script>
     {% endblock %}
