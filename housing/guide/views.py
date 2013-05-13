@@ -13,7 +13,7 @@ def ensure_get(request):
         raise Http404
 
 def home(request):
-    dorms = Dorm.objects.all()
+    dorms = Dorm.objects.order_by('short_name')
 
     return render_to_response('index.html', {
             'dorms': dorms,
