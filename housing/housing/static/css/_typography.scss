@@ -5,7 +5,7 @@ h1, h2, h3, h4, h5, h6, p {
 /*label.body-text {
 	font-size: 0.8em;
 }*/
-span.smaller { 
+span.smaller {
 	font-size: 0.7em;
 	line-height: 0.7em;
 }
@@ -24,6 +24,10 @@ a:hover{
 }
 #search-container input {
 	font-family: $meta;
+}
+
+.leaflet-container {
+	font-family: $proxima !important;
 }
 
 // Paragraph Styles
