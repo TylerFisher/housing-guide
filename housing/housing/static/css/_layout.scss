@@ -92,9 +92,10 @@
 		user-select: none;
 		li {
 			list-style-type: none;
-			line-height: 115%;
+			line-height: 120%;
 			label {
 				display: inline;
+				font-family: $proxima;
 			}
 			@media (max-width: $desk-start) {
 				margin-left: 0.5em;
@@ -108,7 +109,14 @@
 		}
 	}
 }
+#clear-filter-button {
+	background: $light-purple;
+	margin-top: 16px;
+	width: 6.2em;
+	padding: 0.3em 1em;
+}
 
+// Explore section of page. Contains map and table.
 #explore-container {
 	@media (min-width: $desk-start) {
 		border-left: 1px solid $light-purple;
@@ -140,6 +148,7 @@
 	@include padded-grid-item;
 }
 table {
+	font-family: $proxima;
 	@media (min-width: $lap-start) {
 		margin-top: 31px;
 	}
@@ -148,12 +157,15 @@ table {
 		border-bottom: 1px solid $light-purple;
 	}
 	thead tr {
-		font-family: $proxima;
 		background-color: $light-purple;
-		color: $dark-gray;
+		height: 2em;
+		font-weight: bold;
 	}
 	thead tr td:first-child {
-		padding-left: 1%;
+		padding-left: 3%;
+	}
+	tbody tr td:first-child {
+		padding-left: 3%;
 	}
 }
 td {
@@ -165,7 +177,7 @@ td {
 	width: 8px;
 	height: 8px;
 	border-radius: 8px;
-	margin: 7px;
+	margin: 7px 7px 0px 0px;
 }
 .perfect-fit > .dot,
 .dot.perfect-fit {
@@ -187,7 +199,8 @@ td {
 	overflow: auto;
 	margin-bottom: 24px;
 	p {
-		margin-right: 1%;
+		margin-right: 4%;
+		font-family: $proxima;
 	}
 }
 #legend {

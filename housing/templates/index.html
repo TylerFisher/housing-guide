@@ -7,7 +7,7 @@
 			<div class="grid__item one-whole desk-two-thirds float-left">
 				<p class="body-text intro">Your first college dorm can be a taste of freedom and a great community, but it can also be daunting. Use the filters to see which dorms work for you, then click a dorm name to see video, photos and more.</p>
 			</div><!--
-		 --><div class="grid__item one-whole desk-one-third no-padding">
+		 --><div class="grid__item one-whole desk-one-third">
 				<div id="search-container">
 					<label for="searchbox"><span class="delta">Search</span><span class="epsilon"> by dorm name</span></label>
 					<input id="searchbox" type="text" data-provide="typeahead" autocomplete="off">
@@ -20,17 +20,16 @@
 
 		<div id="filter-container" class="grid__item one-whole desk-one-fifth padded">
 			<h4>Filter <a href="#about-filters"><span class="epsilon">or read more</span></a></h4>
-      <h4 class="clear-filter"><a><span class="epsilon">(clear filter)</span></a></h4>
 			<div class="grid">
 				<div class="grid__item one-whole lap-one-fifth">
 					<ul>
 						<li>
 							<input type="checkbox" class="filter" id="north-filter">
-							<label class="body-text" class="body-text" for="north-filter">North Campus</label>
+							<label for="north-filter">North Campus</label>
 						</li>
 						<li>
 							<input type="checkbox" class="filter" id="south-filter">
-							<label class="body-text" for="south-filter">South Campus</label>
+							<label for="south-filter">South Campus</label>
 						</li>
 					</ul>
 				</div><!--
@@ -38,15 +37,15 @@
 					<ul>
 						<li>
 							<input type="checkbox" class="filter" id="rescol-filter">
-							<label class="body-text" for="rescol-filter">Res College</label>
+							<label for="rescol-filter">Res College</label>
 						</li>
 						<li>
 							<input type="checkbox" class="filter" id="rescomm-filter">
-							<label class="body-text" for="rescomm-filter">Res Community</label>
+							<label for="rescomm-filter">Res Community</label>
 						</li>
 						<li>
 							<input type="checkbox" class="filter" id="reshall-filter">
-							<label class="body-text" for="reshall-filter">Res Hall</label>
+							<label for="reshall-filter">Res Hall</label>
 						</li>
 					</ul>
 				</div><!--
@@ -54,15 +53,15 @@
 					<ul>
 						<li>
 							<input type="checkbox" class="filter" id="small-filter">
-							<label class="body-text" for="small-filter">Small</label>
+							<label for="small-filter">Small</label>
 						</li>
 						<li>
 							<input type="checkbox" class="filter" id="med-filter">
-							<label class="body-text" for="med-filter">Medium</label>
+							<label for="med-filter">Medium</label>
 						</li>
 						<li>
 							<input type="checkbox" class="filter" id="large-filter">
-							<label class="body-text" for="large-filter">Large</label>
+							<label for="large-filter">Large</label>
 						</li>
 					</ul>
 				</div><!--
@@ -70,11 +69,11 @@
 					<ul>
 						<li>
 							<input type="checkbox" class="filter" id="ac-filter">
-							<label class="body-text" for="ac-filter">Has A.C.</label>
+							<label for="ac-filter">Has A.C.</label>
 						</li>
 						<li>
 							<input type="checkbox" class="filter" id="dining-filter">
-							<label class="body-text" for="dining-filter">Has dining hall</label>
+							<label for="dining-filter">Has dining hall</label>
 						</li>
 					</ul>
 				</div><!--
@@ -82,19 +81,22 @@
 					<ul>
 						<li>
 							<input type="checkbox" class="filter" id="freshmen-filter">
-							<label class="body-text" for="freshmen-filter">Freshmen only</label>
+							<label for="freshmen-filter">Freshmen only</label>
 						</li>
 						<li>
 							<input type="checkbox" class="filter" id="female-filter">
-							<label class="body-text" for="female-filter">Female only</label>
+							<label for="female-filter">Female only</label>
 						</li>
 						<li>
 							<input type="checkbox" class="filter" id="opengender-filter">
-							<label class="body-text" for="opengender-filter">Open gender</label>
+							<label for="opengender-filter">Open gender</label>
 						</li>
 					</ul>
 				</div>
 			</div>
+            <div id="clear-filter-button" class="clear-filter padding-top">
+                <h4><a><span>Clear all</span></a></h4>
+            </div>
       <div id="temp">
       </div>
 		</div><!-- End filter grid item
@@ -122,9 +124,9 @@
 						<tbody>
 						{% for dorm in dorms %}
 							<tr onmouseover="highlightTable(this)" onmouseout="resetHighlightTable(this)">
-								<td><p class="body-text dorm-name" value="{{dorm.name}}"><a href="{% url 'guide.views.detail' dorm_slug=dorm.slug %}">{{ dorm.short_name }}</a></p></td>
-								<td><p class="body-text">{{ dorm.size }}</p></td>
-								<td><p class="body-text">{{ dorm.dorm_type }}</p></td>
+								<td><p class="dorm-name" value="{{dorm.name}}"><a href="{% url 'guide.views.detail' dorm_slug=dorm.slug %}">{{ dorm.short_name }}</a></p></td>
+								<td><p>{{ dorm.size }}</p></td>
+								<td><p>{{ dorm.dorm_type }}</p></td>
 							</tr>
 						{% endfor %}
 						</tbody>
@@ -132,11 +134,11 @@
 					<div id="legend-container">
 						<div id="legend">
 							<div class="dot perfect-fit"></div>
-							<p class="body-text float-left">Perfect</p>
+							<p class="float-left">Perfect</p>
 							<div class="dot good-fit"></div>
-							<p class="body-text float-left">Meh</p>
+							<p class="float-left">Meh</p>
 							<div class="dot bad-fit"></div>
-							<p class="body-text float-left">Not your type</p>
+							<p class="float-left">Not your type</p>
 						</div>
 					</div>
 				</div><!-- End table grid item -->
@@ -453,8 +455,8 @@
                         matchCount += 1;
                     }
                 }
-                console.log(numSelected);
-                console.log(matchCount);
+                // console.log(numSelected);
+                // console.log(matchCount);
                 if (matchCount == numSelected) {
                     $(elem).addClass('perfect-fit');
                     changeMap(jsonName, perfectStyle);
