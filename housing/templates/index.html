@@ -339,7 +339,7 @@
         var numSelected = count(selections);
         if (numSelected) {
             // at least one is selected; display filter criteria
-            if ($('.dot').length < 4) {
+            if (!$('.dorm-name').children('.dot').length) {
                 // add dots
                 $('.dorm-name').prepend('<div class="dot"></div>');
             }
@@ -379,8 +379,7 @@
             sortTable();
         } else {
             // nothing is selected; remove dots and exit
-            $('.dorm-name').children('.dot').remove();
-            sortTable();
+            clearFilter();
             return;
         }
     });
