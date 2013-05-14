@@ -312,11 +312,28 @@
         var cell = $(row).children()[0];
         var graph = $(cell).children()[0];
         var htmlName = $(graph).attr("value");
+        var attrs = $(graph).attr("class").split(" ");
 
         $(row).css("background-color", "");
+
         for (var i = 0; i < jsonLayers.length; i++) {
             if (jsonLayers[i].name == htmlName) {
+                var layer = jsonLayers[i].value;
                 jsonLayers[i].value.setStyle(defaultStyle);
+                if (attrs.length > 1) {
+                    var fit = attrs[1];
+                    if (fit === "bad-fit") {
+                        layer.setStyle(notStyle);
+                    }
+                    else if (fit === "perfect-fit") {
+                        layer.setStyle(perfectStyle);
+                    }
+                    else {
+                        layer.setStyle(mehStyle);
+                    }
+                } else {
+                    layer.setStyle(defaultStyle);
+                }
             }
         }
     }
