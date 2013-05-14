@@ -75,6 +75,12 @@
 		}
 	}
 }
+ul.typeahead.dropdown-menu {
+	z-index: 1000;
+	li {
+		list-style-type: none;
+	}
+}
 
 // Filter
 #filter-container {
@@ -201,6 +207,9 @@ td {
 	p {
 		margin-right: 4%;
 		font-family: $proxima;
+	}
+	p:last-child {
+		margin-right: 0%;
 	}
 }
 #legend {
