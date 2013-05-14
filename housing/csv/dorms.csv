@@ -1,11 +1,11 @@
 name,short_name,slug,dorm_type,has_ac,size,campus_side,address,dining,female_only,freshmen_only,open_gender,blurb,singles,doubles,triples,cost,dist_to_tech,dist_to_norris,dist_to_bk,dist_to_kresge,room_dimensions
 1835 Hinman,1835 Hinman,1835-hinman,Hall,True,231,South,1835 Hinman Avenue,True,False,False,True,"One of the southern-most Halls, 1835 Hinman is located just a few blocks from downtown Evanston and has its own dining hall on the first floor. Hinman is an open suite-style Residence Hall with single- and double-occupancy rooms and is open to all undergraduate students, but houses mainly freshman and sophomores.",61,85,0,2672,13,6,6,3,"14'4"" by 11'6"""
 Allison Residential Community,Allison,allison,Community,True,343,South,1820 Chicago Avenue,True,False,False,False,,8,163,3,2735,12,7,3,4,"17'6"" by 12'2"""
-Ayers Residential College of Commerce & Industry,Ayers,ayers,College,True,170,North,2324 Campus Drive,False,False,False,False,,14,78,0,2735,6,10,19,14,"17'3"" by 11'7"""
+Ayers Residential College of Commerce and Industry,Ayers,ayers,College,True,170,North,2324 Campus Drive,False,False,False,False,,14,78,0,2735,6,10,19,14,"17'3"" by 11'7"""
 Bobb/McCulloch Hall,Bobb/McCulloch,bobb-mcculloch,Hall,True,495,North,2305 Sheridan Road,False,False,False,False,,17,236,2,2520,5,10,18,13,15' by 12'
 Chapin Hall,Chapin,chapin,College,True,72,South,726 University Place,False,False,False,False,,4,34,0,2735,13,10,4,7,"18'5"" by 13'2"""
 College of Cultural and Community Studies,College of Cultural and Community Studies,college-of-cultural-and-community-studies,College,True,43,North,2303 Sheridan Road,False,False,False,False,,16,12,1,2735,1,13,10,16,"12'3"" by 12'10"""
-East Fairchild (Communications ResidentialCollege),East Fairchild,east-fairchild,College,True,108,South,1855 Sheridan Road,False,False,False,False,,32,38,0,2735,12,5,7,2,"14'6"" by 11'7"""
+East Fairchild (Communications Residential College),East Fairchild,east-fairchild,College,True,108,South,1855 Sheridan Road,False,False,False,False,,32,38,0,2735,12,5,7,2,"14'6"" by 11'7"""
 Elder Residential Community,Elder,elder,Community,True,347,North,2400 Sheridan Road,True,False,True,False,,19,164,0,2735,6,13,18,15,"15'3"" by 11'8"""
 GREEN House,GREEN House,green-house,Special Interest Housing,True,42,North,2303 Sheridan Road,False,False,False,False,,16,10,2,2735,1,13,10,16,
 Hobart House (Womens Residential College),Hobart House,hobart-house,College,False,50,South,630 Emerson Street,False,True,False,False,,14,18,0,2735,10,7,5,5,"14'5"" by 12'6"""
