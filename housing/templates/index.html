@@ -277,8 +277,8 @@
                 $(elem).parent().parent().css("background-color", "");
                 
                 var attrs = $(elem).attr("class").split(" ");
-                if (attrs.length > 2) {
-                    var fit = attrs[2];
+                if (attrs.length > 1) {
+                    var fit = attrs[1];
                     if (fit === "bad-fit") {
                         layer.setStyle(notStyle);
                     }
