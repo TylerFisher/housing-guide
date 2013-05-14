@@ -279,8 +279,8 @@
     function highlightTable(row) {
         var cell = $(row).children()[0];
         var graph = $(cell).children()[0];
+        var htmlName = $(graph).attr("value");
 
-        console.log($(graph).attr("value"));
         $(row).css("background-color", "#A8BFB7");
         for (var i = 0; i < jsonLayers.length; i++) {
             if (jsonLayers[i].name == htmlName) {
