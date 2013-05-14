@@ -121,7 +121,7 @@
 						</thead>
 						<tbody>
 						{% for dorm in dorms %}
-							<tr>
+							<tr onmouseover="highlightTable(this)" onmouseout="resetHighlightTable(this)">
 								<td><p class="body-text dorm-name" value="{{dorm.name}}"><a href="{% url 'guide.views.detail' dorm_slug=dorm.slug %}">{{ dorm.short_name }}</a></p></td>
 								<td><p class="body-text">{{ dorm.size }}</p></td>
 								<td><p class="body-text">{{ dorm.dorm_type }}</p></td>
@@ -207,10 +207,11 @@
     <script type="text/javascript">
       var geojson;
 
-      var defaultStyle = {'weight': '0', fillColor: '#381f5e', fillOpacity: '1'};
+      var defaultStyle = {'weight': '0', fillColor: '#38235D', fillOpacity: '1'};
       var perfectStyle = {'weight': '0', fillColor: '#199e8d', fillOpacity: '1'};
       var mehStyle = {'weight': '.5', fillColor: '#e68c1a', fillOpacity: '.5', 'color' : 'black'};
       var notStyle = {'weight': '0', fillColor: '#cd2a2b', fillOpacity: '.5'};
+      var highlightStyle = {'weight': 2, 'color': 'green', 'dashArray': '', 'fillOpacity': 1 };
 
       jsonLayers = []; // will store each json layer as it is added to map to change later
 
@@ -241,6 +242,62 @@
         // does this feature have a property named popupContent?
         if (feature.properties && feature.properties.name) {
             layer.bindPopup(feature.properties.name);
+            layer.on({
+                mouseover: highlightFeature,
+                mouseout: resetHighlight
+            });
+        }
+    }
+
+    function highlightFeature(e) {
+        var layer = e.target;
+        var name = layer.feature.properties.name;
+
+        $('.dorm-name').each(function(i, elem) {
+            if ($(elem).attr("value") === name) {
+                $(elem).parent().parent().css("background-color", "#A8BFB7");
+            }
+        });
+
+        layer.setStyle(highlightStyle);
+        if (!L.Browser.ie && !L.Browser.opera) {
+            layer.bringToFront();
+        }
+    }
+
+    function resetHighlight(e) {
+        geojson.resetStyle(e.target);
+        var name = e.target.feature.properties.name;
+
+        $('.dorm-name').each(function(i, elem) {
+            if ($(elem).attr("value") === name) {
+                $(elem).parent().parent().css("background-color", "");
+            }
+        });
+    }
+
+    function highlightTable(row) {
+        var cell = $(row).children()[0];
+        var graph = $(cell).children()[0];
+        var htmlName = $(graph).attr("value");
+        console.log($(graph).attr("value"));
+        for (var i = 0; i < jsonLayers.length; i++) {
+            if (jsonLayers[i].name == htmlName) {
+                jsonLayers[i].value.setStyle(highlightStyle);
+            }
+        }
+    }
+
+    function resetHighlightTable(row) {
+        console.log("im out!");
+        var cell = $(row).children()[0];
+        var graph = $(cell).children()[0];
+        var htmlName = $(graph).attr("value");
+        console.log($(graph).attr("value"));
+        for (var i = 0; i < jsonLayers.length; i++) {
+            if (jsonLayers[i].name == htmlName) {
+                jsonLayers[i].value.setStyle(defaultStyle);
+            }
         }
     }
 
