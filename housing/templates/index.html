@@ -260,6 +260,7 @@
             if ($(elem).attr("value") === name) {
                 $(elem).parent().parent().css("background-color", "#c3bccf");
             }
+   
         });
 
         layer.setStyle(highlightStyle);
@@ -269,12 +270,28 @@
     }
 
     function resetHighlight(e) { // Mouse out shape
-        geojson.resetStyle(e.target);
+        var layer = e.target;
         var name = e.target.feature.properties.name;
 
         $('.dorm-name').each(function(i, elem) {
             if ($(elem).attr("value") === name) {
                 $(elem).parent().parent().css("background-color", "");
+                
+                var attrs = $(elem).attr("class").split(" ");
+                if (attrs.length > 1) {
+                    var fit = attrs[1];
+                    if (fit === "bad-fit") {
+                        layer.setStyle(notStyle);
+                    }
+                    else if (fit === "perfect-fit") {
+                        layer.setStyle(perfectStyle);
+                    }
+                    else {
+                        layer.setStyle(mehStyle);
+                    }
+                } else {
+                    layer.setStyle(defaultStyle);
+                }
             }
         });
     }
@@ -296,11 +313,28 @@
         var cell = $(row).children()[0];
         var graph = $(cell).children()[0];
         var htmlName = $(graph).attr("value");
+        var attrs = $(graph).attr("class").split(" ");
 
         $(row).css("background-color", "");
+
         for (var i = 0; i < jsonLayers.length; i++) {
             if (jsonLayers[i].name == htmlName) {
+                var layer = jsonLayers[i].value;
                 jsonLayers[i].value.setStyle(defaultStyle);
+                if (attrs.length > 1) {
+                    var fit = attrs[1];
+                    if (fit === "bad-fit") {
+                        layer.setStyle(notStyle);
+                    }
+                    else if (fit === "perfect-fit") {
+                        layer.setStyle(perfectStyle);
+                    }
+                    else {
+                        layer.setStyle(mehStyle);
+                    }
+                } else {
+                    layer.setStyle(defaultStyle);
+                }
             }
         }
     }
@@ -456,8 +490,10 @@
                         matchCount += 1;
                     }
                 }
+
                 // console.log(numSelected);
                 // console.log(matchCount);
+
                 if (matchCount == numSelected) {
                     $(elem).addClass('perfect-fit');
                     changeMap(jsonName, perfectStyle);
