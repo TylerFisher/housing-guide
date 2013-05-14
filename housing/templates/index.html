@@ -266,12 +266,28 @@
     }
 
     function resetHighlight(e) { // Mouse out shape
-        geojson.resetStyle(e.target);
+        var layer = e.target;
         var name = e.target.feature.properties.name;
 
         $('.dorm-name').each(function(i, elem) {
             if ($(elem).attr("value") === name) {
                 $(elem).parent().parent().css("background-color", "");
+                
+                var attrs = $(elem).attr("class").split(" ");
+                if (attrs.length > 2) {
+                    var fit = attrs[2];
+                    if (fit === "bad-fit") {
+                        layer.setStyle(notStyle);
+                    }
+                    else if (fit === "perfect-fit") {
+                        layer.setStyle(perfectStyle);
+                    }
+                    else {
+                        layer.setStyle(mehStyle);
+                    }
+                } else {
+                    layer.setStyle(defaultStyle);
+                }
             }
         });
     }
@@ -453,8 +469,8 @@
                         matchCount += 1;
                     }
                 }
-                console.log(numSelected);
-                console.log(matchCount);
+                //console.log(numSelected);
+                //console.log(matchCount);
                 if (matchCount == numSelected) {
                     $(elem).addClass('perfect-fit');
                     changeMap(jsonName, perfectStyle);
