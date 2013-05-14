@@ -142,6 +142,9 @@
     <script src="{% static 'js/leaflet-providers.js' %}"></script>
     <script type="text/javascript">
       var geojson;
+
+      var defaultStyle = {'weight': '0', fillColor: '#381f5e', fillOpacity: '1'};
+
       var map = L.map('small-map').setView([42.05504447993239,-87.6753830909729], 16);
       L.tileLayer.provider('MapQuestOpen.OSM').addTo(map);
       $.getJSON('{% url "detail_json" dorm_slug=dorm.slug %}', function(data){
@@ -150,17 +153,13 @@
       function parse_map_data(data){
         $.each(data, function(key, val){
             geojson = new L.GeoJSON(val, {
-              onEachFeature: onEachFeature
-            }).addTo(map);
-            var bounds = geojson.getBounds();
-            map.setView(bounds.getCenter(), 17);
+              style: function(feature) {
+              return defaultStyle;
+            }
+          }).addTo(map);
+          var bounds = geojson.getBounds();
+          map.setView(bounds.getCenter(), 17);
         });
-    }
-    function onEachFeature(feature, layer) {
-        // does this feature have a property named popupContent?
-        if (feature.properties && feature.properties.name) {
-            layer.bindPopup(feature.properties.name);
-        }
     }
 
     $('#video-tab').click(function() {
