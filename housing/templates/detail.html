@@ -68,7 +68,7 @@
             <p class="body-text">No A.C.</p>
             <p class="body-text">Closest dining hall: Hinman
             <p class="body-text">Residential college</p>
-            <p class="body-text">Room size: 14'6" by 11'7"</p>
+            <p class="body-text">Room size: <span class="number">14'6"</span> by <span class="number">11'7"</span></p>
             <p class="body-text">$<span class="number">2642</span> per quarter</p>
           </div>
         </div>
@@ -127,8 +127,19 @@
             {% if dorm.dining %}
               <p class="body-text">Dining hall in building</p>
             {% endif %}
-            <p class="body-text">{{ dorm.dorm_type }}</p>
-            <p class="body-text">Room size: {{dorm.room_dimensions}}</p>
+            {% if dorm.dorm_type == 'Hall' %}
+              <p class="body-text">Residence hall</p>
+            {% endif %}
+            {% if dorm.dorm_type == 'College' %}
+              <p class="body-text">Residential college</p>
+            {% endif %}
+            {% if dorm.dorm_type == 'Community' %}
+              <p class="body-text">Residential community</p>
+            {% endif %}
+            {% if dorm.dorm_type == 'Special Interest Housing' %}
+              <p class="body-text">Special interest housing</p>
+            {% endif %}
+            <p class="body-text"><span class="number">{{dorm.room_dimensions}}</span> room (double)</p>
             <p class="body-text">$<span class="number">{{dorm.cost|floatformat}}</span> per quarter</p>
           </div>
         </div>

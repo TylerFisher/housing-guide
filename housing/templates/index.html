@@ -25,11 +25,11 @@
 				<div class="grid__item one-whole lap-one-fifth">
 					<ul>
 						<li>
-							<input type="radio" name="side" class="filter" id="north-filter">
+							<input type="checkbox" class="filter" id="north-filter">
 							<label class="body-text" class="body-text" for="north-filter">North Campus</label>
 						</li>
 						<li>
-							<input type="radio" name="side" class="filter" id="south-filter">
+							<input type="checkbox" class="filter" id="south-filter">
 							<label class="body-text" for="south-filter">South Campus</label>
 						</li>
 					</ul>
@@ -37,15 +37,15 @@
 			 --><div class="grid__item one-whole lap-one-fifth">
 					<ul>
 						<li>
-							<input type="radio" name="type" class="filter" id="rescol-filter">
+							<input type="checkbox" class="filter" id="rescol-filter">
 							<label class="body-text" for="rescol-filter">Res College</label>
 						</li>
 						<li>
-							<input type="radio" name="type" class="filter" id="rescomm-filter">
+							<input type="checkbox" class="filter" id="rescomm-filter">
 							<label class="body-text" for="rescomm-filter">Res Community</label>
 						</li>
 						<li>
-							<input type="radio" name="type" class="filter" id="reshall-filter">
+							<input type="checkbox" class="filter" id="reshall-filter">
 							<label class="body-text" for="reshall-filter">Res Hall</label>
 						</li>
 					</ul>
@@ -53,15 +53,15 @@
 			 --><div class="grid__item one-whole lap-one-fifth">
 					<ul>
 						<li>
-							<input type="radio" name="size" class="filter" id="small-filter">
+							<input type="checkbox" class="filter" id="small-filter">
 							<label class="body-text" for="small-filter">Small</label>
 						</li>
 						<li>
-							<input type="radio" name="size" class="filter" id="med-filter">
+							<input type="checkbox" class="filter" id="med-filter">
 							<label class="body-text" for="med-filter">Medium</label>
 						</li>
 						<li>
-							<input type="radio" name="size" class="filter" id="large-filter">
+							<input type="checkbox" class="filter" id="large-filter">
 							<label class="body-text" for="large-filter">Large</label>
 						</li>
 					</ul>
@@ -121,7 +121,7 @@
 						</thead>
 						<tbody>
 						{% for dorm in dorms %}
-							<tr>
+							<tr onmouseover="highlightTable(this)" onmouseout="resetHighlightTable(this)">
 								<td><p class="body-text dorm-name" value="{{dorm.name}}"><a href="{% url 'guide.views.detail' dorm_slug=dorm.slug %}">{{ dorm.short_name }}</a></p></td>
 								<td><p class="body-text">{{ dorm.size }}</p></td>
 								<td><p class="body-text">{{ dorm.dorm_type }}</p></td>
@@ -207,10 +207,11 @@
     <script type="text/javascript">
       var geojson;
 
-      var defaultStyle = {'weight': '0', fillColor: '#381f5e', fillOpacity: '1'};
+      var defaultStyle = {'weight': '0', fillColor: '#38235D', fillOpacity: '1'};
       var perfectStyle = {'weight': '0', fillColor: '#199e8d', fillOpacity: '1'};
-      var mehStyle = {'weight': '.5', fillColor: '#e68c1a', fillOpacity: '.5', 'color' : 'black'};
+      var mehStyle = {'weight': '.5', fillColor: '#e68c1a', fillOpacity: '.8', 'color' : '#e68c1a'};
       var notStyle = {'weight': '0', fillColor: '#cd2a2b', fillOpacity: '.5'};
+      var highlightStyle = {'weight': 4, 'opacity': 0.8, 'color': 'white', 'dashArray': '', fillOpacity: 1 };
 
       jsonLayers = []; // will store each json layer as it is added to map to change later
 
@@ -241,6 +242,63 @@
         // does this feature have a property named popupContent?
         if (feature.properties && feature.properties.name) {
             layer.bindPopup(feature.properties.name);
+            layer.on({
+                mouseover: highlightFeature,
+                mouseout: resetHighlight
+            });
+        }
+    }
+
+    function highlightFeature(e) { // Mouse on shape
+        var layer = e.target;
+        var name = layer.feature.properties.name;
+
+        $('.dorm-name').each(function(i, elem) {
+            if ($(elem).attr("value") === name) {
+                $(elem).parent().parent().css("background-color", "#c3bccf");
+            }
+        });
+
+        layer.setStyle(highlightStyle);
+        if (!L.Browser.ie && !L.Browser.opera) {
+            layer.bringToFront();
+        }
+    }
+
+    function resetHighlight(e) { // Mouse out shape
+        geojson.resetStyle(e.target);
+        var name = e.target.feature.properties.name;
+
+        $('.dorm-name').each(function(i, elem) {
+            if ($(elem).attr("value") === name) {
+                $(elem).parent().parent().css("background-color", "");
+            }
+        });
+    }
+
+    function highlightTable(row) { // Mouse on table row
+        var cell = $(row).children()[0];
+        var graph = $(cell).children()[0];
+        var htmlName = $(graph).attr("value");
+
+        $(row).css("background-color", "#c3bccf");
+        for (var i = 0; i < jsonLayers.length; i++) {
+            if (jsonLayers[i].name == htmlName) {
+                jsonLayers[i].value.setStyle(highlightStyle);
+            }
+        }
+    }
+
+    function resetHighlightTable(row) { // Mouse out table row
+        var cell = $(row).children()[0];
+        var graph = $(cell).children()[0];
+        var htmlName = $(graph).attr("value");
+
+        $(row).css("background-color", "");
+        for (var i = 0; i < jsonLayers.length; i++) {
+            if (jsonLayers[i].name == htmlName) {
+                jsonLayers[i].value.setStyle(defaultStyle);
+            }
         }
     }
 
@@ -301,12 +359,20 @@
         {% endfor %}
     };
 
-    // return true if any property of an object is true
-    var count = function(obj) {
+    // count true properties of an object
+    var count = function(obj, props) {
         var num = 0;
-        for (var prop in obj) {
-            if (obj[prop]) {
-                num += 1;
+        if (props) {
+            for (var i in props) {
+                if (obj[props[i]]) {
+                    num += 1;
+                }
+            }
+        } else {
+            for (var prop in obj) {
+                if (obj[prop]) {
+                    num += 1;
+                }
             }
         }
         return num;
@@ -329,6 +395,12 @@
     // interactive filtering
     var selections = {};
     var numCriteria = $('.filter').length;
+    var sideCriteria = ['north', 'south'];
+    var typeCriteria = ['rescol', 'rescomm', 'reshall'];
+    var sizeCriteria = ['small', 'med', 'large'];
+
+    var mostCriteria = sideCriteria.concat(typeCriteria, sizeCriteria);
+    var otherCriteria = ['ac', 'dining', 'female', 'freshmen', 'opengender'];
 
     $('.filter').change(function() {
         // update selections
@@ -336,7 +408,10 @@
             selections[$(elem).attr('id').split('-')[0]] = elem.checked;
         });
 
-        var numSelected = count(selections);
+        var numSelected = Math.min(count(selections, sideCriteria), 1)
+                            + Math.min(count(selections, typeCriteria), 1)
+                            + Math.min(count(selections, sizeCriteria), 1)
+                            + count(selections, otherCriteria);
         if (numSelected) {
             // at least one is selected; display filter criteria
             if (!$('.dorm-name').children('.dot').length) {
@@ -355,18 +430,35 @@
                 // count number of criteria that match
                 var matchCount = 0;
                 var disagreements = 0;
-                for (var prop in selections) {
-                    if (selections[prop] && dorms[name][prop]) {
+                for (var i in sideCriteria) {
+                    if (selections[sideCriteria[i]] && dorms[name][sideCriteria[i]]) {
                         matchCount += 1;
-                    }
-                    if (selections[prop] && !dorms[name][prop]) {
-                        disagreements += 1;
+                        break;
                     }
                 }
+                for (var i in typeCriteria) {
+                    if (selections[typeCriteria[i]] && dorms[name][typeCriteria[i]]) {
+                        matchCount += 1;
+                        break;
+                    }
+                }
+                for (var i in sizeCriteria) {
+                    if (selections[sizeCriteria[i]] && dorms[name][sizeCriteria[i]]) {
+                        matchCount += 1;
+                        break;
+                    }
+                }
+                for (var i in otherCriteria) {
+                    if (selections[otherCriteria[i]] && dorms[name][otherCriteria[i]]) {
+                        matchCount += 1;
+                    }
+                }
+                console.log(numSelected);
+                console.log(matchCount);
                 if (matchCount == numSelected) {
                     $(elem).addClass('perfect-fit');
                     changeMap(jsonName, perfectStyle);
-                } else if (disagreements <= (.6 * numSelected)) {
+                } else if (matchCount > (.4 * numSelected)) {
                     $(elem).addClass('good-fit');
                     changeMap(jsonName, mehStyle);
                 } else {

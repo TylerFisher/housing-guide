@@ -27,6 +27,10 @@ class Dorm(models.Model):
     dist_to_bk = models.FloatField(null=True)
     dist_to_kresge = models.FloatField(null=True)
     room_dimensions = models.CharField(max_length=255, null=True)
+    freshmen = models.IntegerField(null=True)
+    sophomores = models.IntegerField(null=True)
+    juniors = models.IntegerField(null=True)
+    seniors = models.IntegerField(null=True)
 
     def __unicode__(self):
         return self.name
