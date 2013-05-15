@@ -9,8 +9,7 @@
 			</div><!--
 		 --><div class="grid__item one-whole desk-one-third">
 				<div id="search-container">
-					<label for="searchbox"><span class="delta">Search</span><span class="epsilon"> by dorm name</span></label>
-					<input id="searchbox" type="text" data-provide="typeahead" autocomplete="off" data-source="dorm_array">
+          <input id="searchbox" type="text" placeholder="Search">
 				</div>
 			</div>
 		</div>
@@ -204,7 +203,6 @@
 	</div>
 
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
     <script src="{% static 'js/leaflet-providers.js' %}"></script>
     <script type="text/javascript">
@@ -462,7 +460,6 @@
 
                 // count number of criteria that match
                 var matchCount = 0;
-                var disagreements = 0;
                 for (var i in sideCriteria) {
                     if (selections[sideCriteria[i]] && dorms[name][sideCriteria[i]]) {
                         matchCount += 1;

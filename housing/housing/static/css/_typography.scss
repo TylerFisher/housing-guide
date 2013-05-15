@@ -23,7 +23,9 @@ a:hover{
 	background: $light-purple;
 }
 #search-container input {
-	font-family: $meta;
+	font-family: $proxima;
+    border: 1px solid #ccc;
+    padding: 2px 4px;
 }
 
 .leaflet-container {
