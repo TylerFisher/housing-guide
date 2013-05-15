@@ -18,6 +18,18 @@
 		<a href="http://northbynorthwestern.com/"><img src="{% get_static_prefix %}img/nbn-logo.png" alt="North by Northwestern"></a>
 	</div>
 	{% block main %}{% endblock %}
+	<script type="text/javascript">
+ var gaJsHost = (("https:" == document.location.protocol) ?
+ "https://ssl." : "http://www.");
+ document.write(unescape("%3Cscript src='" + gaJsHost +
+ "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+ </script>
+ <script type="text/javascript">
+ try {
+ var pageTracker = _gat._getTracker("UA-15143352-1");
+ pageTracker._trackPageview();
+ } catch(err) {}
+     </script>
   <script type="text/javascript">
       $('#searchbox').change(function() {
           window.location.href = $(this).val();
