@@ -10,7 +10,7 @@
 		 --><div class="grid__item one-whole desk-one-third">
 				<div id="search-container">
 					<label for="searchbox"><span class="delta">Search</span><span class="epsilon"> by dorm name</span></label>
-					<input id="searchbox" type="text" data-provide="typeahead" autocomplete="off">
+					<input id="searchbox" type="text" data-provide="typeahead" autocomplete="off" data-source="dorm_array">
 				</div>
 			</div>
 		</div>
@@ -204,6 +204,7 @@
 	</div>
 
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
     <script src="{% static 'js/leaflet-providers.js' %}"></script>
     <script type="text/javascript">
@@ -243,11 +244,17 @@
     function onEachFeature(feature, layer) {
         // does this feature have a property named popupContent?
         if (feature.properties && feature.properties.name) {
-            layer.bindPopup(feature.properties.name);
-            layer.on({
-                mouseover: highlightFeature,
-                mouseout: resetHighlight
-            });
+            {% for dorm in dorms %}
+            if ( "{{dorm.name}}" === feature.properties.name) {
+                var address = "{{dorm.address}}";
+                var headline = "<h4><a href=" + "{% url 'guide.views.detail' dorm_slug=dorm.slug %}" + ">{{ dorm.short_name }}</a></h4>";
+                layer.bindPopup(headline + ' ' + address); //address
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlight
+                });
+            }
+            {% endfor %}
         }
     }
 
@@ -398,17 +405,9 @@
     // count true properties of an object
     var count = function(obj, props) {
         var num = 0;
-        if (props) {
-            for (var i in props) {
-                if (obj[props[i]]) {
-                    num += 1;
-                }
-            }
-        } else {
-            for (var prop in obj) {
-                if (obj[prop]) {
-                    num += 1;
-                }
+        for (var i in props) {
+            if (obj[props[i]]) {
+                num += 1;
             }
         }
         return num;
@@ -434,8 +433,6 @@
     var sideCriteria = ['north', 'south'];
     var typeCriteria = ['rescol', 'rescomm', 'reshall'];
     var sizeCriteria = ['small', 'med', 'large'];
-
-    var mostCriteria = sideCriteria.concat(typeCriteria, sizeCriteria);
     var otherCriteria = ['ac', 'dining', 'female', 'freshmen', 'opengender'];
 
     $('.filter').change(function() {
@@ -490,9 +487,7 @@
                     }
                 }
 
-                // console.log(numSelected);
-                // console.log(matchCount);
-
+                // update dot colors
                 if (matchCount == numSelected) {
                     $(elem).addClass('perfect-fit');
                     changeMap(jsonName, perfectStyle);
@@ -530,5 +525,15 @@
 
     // clear filter on page load
     clearFilter();
+
+    $(document).ready(function() {
+        var dorms_array = [];
+        {% for dorm in dorms %}
+            dorms_array.push("{{dorm}}");
+        {% endfor %}
+        $('#searchbox').typeahead({source: dorms_array});
+    });
+
     </script>
     {% endblock %}
+
