@@ -64,7 +64,7 @@
         <h3 class="padding-top hidden-desktop">Vital stats</h3>
         <div class="grid padding-top hidden-desktop">
           <div class="grid__item one-whole lap-one-third stats-item">
-            <p class="body-text">South campus</p>
+            <p class="body-text">{{dorm.campus_side}} campus</p>
             <p class="body-text"><span class="number">{{ dorm.dist_to_tech|floatformat }}</span> minute walk to Tech</p>
             <p class="body-text"><span class="number">{{ dorm.dist_to_norris|floatformat }}</span> minute walk to Norris</p>
             <p class="body-text"><span class="number">{{ dorm.dist_to_kresge|floatformat }}</span> minute walk to Kresge</p>
@@ -74,7 +74,7 @@
             <p class="body-text"><span class="number">{{ dorm.doubles }}</span> doubles</p>
             <p class="body-text">+ <span class="number">{{ dorm.singles }}</span> singles</p>
             <p class="body-text">+ <span class="number">{{ dorm.triples }}</span> triples</p>
-            <p id="sum" class="body-text"><span class="number">115</span> residents</p>
+            <p id="sum" class="body-text"><span class="number">{{ dorm.size }}</span></span> residents</p>
           </div><!--
          --><div class="grid__item one-whole lap-one-third stats-item">
             {% if dorm.has_ac %}
