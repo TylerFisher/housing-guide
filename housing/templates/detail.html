@@ -4,7 +4,7 @@
 	<div id="header">
 		<div class="grid">
 			<div class="grid__item one-whole desk-two-thirds float-left">
-				<h1><a href="/housing"><span class="smaller">The </span>Housing Guide</a></h1>
+				<h1><a href="{% url 'guide.views.home' %}"><span class="smaller">The </span>Housing Guide</a></h1>
 			</div><!--
 		 --><div class="grid__item one-whole desk-one-third">
 				<div id="search-container">
@@ -64,7 +64,7 @@
         <h3 class="padding-top hidden-desktop">Vital stats</h3>
         <div class="grid padding-top hidden-desktop">
           <div class="grid__item one-whole lap-one-third stats-item">
-            <p class="body-text">South campus</p>
+            <p class="body-text">{{dorm.campus_side}} campus</p>
             <p class="body-text"><span class="number">{{ dorm.dist_to_tech|floatformat }}</span> minute walk to Tech</p>
             <p class="body-text"><span class="number">{{ dorm.dist_to_norris|floatformat }}</span> minute walk to Norris</p>
             <p class="body-text"><span class="number">{{ dorm.dist_to_kresge|floatformat }}</span> minute walk to Kresge</p>
@@ -74,14 +74,32 @@
             <p class="body-text"><span class="number">{{ dorm.doubles }}</span> doubles</p>
             <p class="body-text">+ <span class="number">{{ dorm.singles }}</span> singles</p>
             <p class="body-text">+ <span class="number">{{ dorm.triples }}</span> triples</p>
-            <p id="sum" class="body-text"><span class="number">115</span> residents</p>
+            <p id="sum" class="body-text"><span class="number">{{ dorm.size }}</span></span> residents</p>
           </div><!--
          --><div class="grid__item one-whole lap-one-third stats-item">
-            <p class="body-text">No A.C.</p>
-            <p class="body-text">Closest dining hall: Hinman
-            <p class="body-text">Residential college</p>
-            <p class="body-text">Room size: <span class="number">14'6"</span> by <span class="number">11'7"</span></p>
-            <p class="body-text">$<span class="number">2642</span> per quarter</p>
+            {% if dorm.has_ac %}
+              <p class="body-text">Air conditioning</p>
+            {% endif %}
+            {% if not dorm.has_ac %}
+              <p class="body-text">No air conditioning</p>
+            {% endif %}
+            {% if dorm.dining %}
+              <p class="body-text">Dining hall in building</p>
+            {% endif %}
+            {% if dorm.dorm_type == 'Hall' %}
+              <p class="body-text">Residence hall</p>
+            {% endif %}
+            {% if dorm.dorm_type == 'College' %}
+              <p class="body-text">Residential college</p>
+            {% endif %}
+            {% if dorm.dorm_type == 'Community' %}
+              <p class="body-text">Residential community</p>
+            {% endif %}
+            {% if dorm.dorm_type == 'Special Interest Housing' %}
+              <p class="body-text">Special interest housing</p>
+            {% endif %}
+            <p class="body-text"><span class="number">{{dorm.room_dimensions}}</span> room (double)</p>
+            <p class="body-text">$<span class="number">{{dorm.cost|floatformat}}</span> per quarter</p>
           </div>
         </div>
 
@@ -182,9 +200,11 @@
         ]
       }).setView([42.05504447993239,-87.6753830909729], 16);
       L.tileLayer.provider('MapQuestOpen.OSM').addTo(map);
-      $.getJSON('{% url "detail_json" dorm_slug=dorm.slug %}', function(data){
-            parse_map_data(data);
-        });
+      
+      $.ajax('http://nbn-housing.s3.amazonaws.com/static/json/shapes.json',{jsonp: false, jsonpCallback: 'myCallback', success:function(data) {
+      	parse_map_data(data);
+      } 
+      });
       function parse_map_data(data){
         $.each(data, function(key, val){
             geojson = new L.GeoJSON(val, {
