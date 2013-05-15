@@ -31,6 +31,7 @@ class Dorm(models.Model):
     sophomores = models.IntegerField(null=True)
     juniors = models.IntegerField(null=True)
     seniors = models.IntegerField(null=True)
+    video_embed = models.TextField(null=True)
 
     def __unicode__(self):
         return self.name
@@ -64,8 +65,7 @@ class SlideshowImage(models.Model):
     """For building slideshows and attaching them to stories"""
     name = models.CharField(max_length=50)
     dorm = models.ForeignKey(Dorm, null=True, blank=True)
-    image = models.ImageField(upload_to='static/img/')
-    caption = models.TextField(null=True, blank=True)
+    url = models.URLField(max_length=200)
     def __unicode__(self):
         return self.name
 
