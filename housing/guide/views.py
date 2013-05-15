@@ -21,7 +21,9 @@ def home(request):
 
 def detail(request, dorm_slug):
     dorm = get_object_or_404(Dorm, slug=dorm_slug)
-    return render_to_response('detail.html', { 'dorm': dorm })
+    dorms = Dorm.objects.order_by('short_name')
+    return render_to_response('detail.html', 
+            {'dorm': dorm, 'dorms': dorms})
 
 def detail_json(request, dorm_slug):
     d = {}

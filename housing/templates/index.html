@@ -9,9 +9,20 @@
 			</div><!--
 		 --><div class="grid__item one-whole desk-one-third">
 				<div id="search-container">
-          <input id="searchbox" type="text" placeholder="Search">
+          <select id="searchbox" name="" data-placeholder="Search" multiple class="chosen-select">
+            {% for dorm in dorms %}
+            <option value="/housing/hall/{{ dorm.slug }}">{{ dorm.short_name }}</option>
+            {% endfor %}
+          </select>
+          <script type="text/javascript">
+            $('.chosen-select').chosen();
+            $('#searchbox').change(function() {
+                window.location.href = $(this).val();
+            });
+          </script>
 				</div>
 			</div>
+      <div style="clear: both;"></div>
 		</div>
 	</div>
 
@@ -202,7 +213,6 @@
 		<p class="credit">Data provided by Northwestern University Housing</p>
 	</div>
 
-	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
     <script src="{% static 'js/leaflet-providers.js' %}"></script>
     <script type="text/javascript">
@@ -528,9 +538,7 @@
         {% for dorm in dorms %}
             dorms_array.push("{{dorm}}");
         {% endfor %}
-        $('#searchbox').typeahead({source: dorms_array});
     });
-
     </script>
     {% endblock %}
 

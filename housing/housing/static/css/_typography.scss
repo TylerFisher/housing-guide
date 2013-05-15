@@ -22,10 +22,12 @@ a:hover{
 ::-moz-selection {
 	background: $light-purple;
 }
-#search-container input {
+#searchbox_chzn {
 	font-family: $proxima;
-    border: 1px solid #ccc;
-    padding: 2px 4px;
+    font-size: 100%;
+}
+#searchbox_chzn input {
+    height: 100%;
 }
 
 .leaflet-container {
