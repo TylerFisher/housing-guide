@@ -200,10 +200,16 @@
         ]
       }).setView([42.05504447993239,-87.6753830909729], 16);
       L.tileLayer.provider('MapQuestOpen.OSM').addTo(map);
-      
-      $.ajax('http://nbn-housing.s3.amazonaws.com/static/json/shapes.json',{jsonp: false, jsonpCallback: 'myCallback', success:function(data) {
-      	parse_map_data(data);
-      } 
+
+       $.ajax({
+        url: 'http://nbn-housing.s3.amazonaws.com/static/json/{{dorm.slug}}.json',
+        async: true,
+        dataType: 'jsonp',
+        jsonp: false,
+        jsonpCallback:'myCallback',
+        success:function(data) {
+            parse_map_data(data);
+        }
       });
       function parse_map_data(data){
         $.each(data, function(key, val){
