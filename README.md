@@ -9,7 +9,8 @@ Once you've synced the database and migrated using South, run the following comm
 ```bash
 ./manage.py import_shapes  
 ./manage.py csvimport --model='guide.Dorm' csv/dorms.csv  
-./manage.py csvimport --mappings='column1=name,column2=text,column3=source,column4=dorm(Dorm|name)' --model='guide.Quote' --charset='utf-8' csv/quotes.csv  
+./manage.py csvimport --mappings='column1=name,column2=text,column3=source,column4=dorm(Dorm|name)' --model='guide.Quote' --charset='utf-8' csv/quotes.csv
+./manage.py csvimport --mappings='column1=name,column2=dorm(Dorm|name),column3=url' --model='guide.SlideshowImage' --charset='utf-8' csv/images.csv  
 ```
 
 Then, runserver and the app should be working.

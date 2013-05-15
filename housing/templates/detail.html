@@ -14,7 +14,7 @@
             {% endfor %}
           </select>
           <script type="text/javascript">
-            $('.chosen-select').chosen();      
+            $('.chosen-select').chosen();
             $('#searchbox').change(function() {
                 window.location.href = $(this).val();
             });
@@ -56,6 +56,7 @@
           </ul>
           </div>
 					<div id="embed-container">
+
           </div>
 				</div>
 
@@ -212,7 +213,7 @@
     }
 
     $('#video-tab').click(function() {
-      $('#embed-container').append('<iframe src="http://player.vimeo.com/video/65669594" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>');
+      $('#embed-container').append('<iframe src="{{dorm.video_embed}}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>');
       $('#media-container img').css('display', 'none');
       $('#video-tab').css('background', '#381F5E');
       $('#photo-tab').css('background', '#c3bccf');
