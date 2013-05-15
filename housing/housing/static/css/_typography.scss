@@ -16,6 +16,13 @@ a {
 a:hover{
 	text-decoration: underline;
 }
+h1 a {
+	color: $dark-gray;
+}
+h1 a:hover {
+	text-decoration: none;
+	color: $light-gray;
+}
 ::selection {
 	background: $light-purple;
 }
