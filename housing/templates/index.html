@@ -246,7 +246,7 @@
       	]
       }).setView([42.05504447993239,-87.6753830909729], 15);
       L.tileLayer.provider('MapQuestOpen.OSM').addTo(map);
-      $.getJSON('{% url "get_shapes" %}', function(data){
+      $.getJSON('http://nbn-housing.s3.amazonaws.com/static/json/shapes.json', function(data){
             parse_map_data(data);
         });
       function parse_map_data(data){
