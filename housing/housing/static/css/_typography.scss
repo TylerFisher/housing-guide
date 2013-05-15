@@ -51,6 +51,9 @@ h1 a:hover {
 .body-text {
 	font-family: $meta;
 	font-size: 1.0em;
+	a {
+		text-decoration: underline;
+	}
 }
 .number {
 	font-size: 1.1em;
@@ -111,8 +114,9 @@ h5, span.epsilon { // Details on actions, e.g. "by dorm name," "or read more"
 	font-size: 0.8rem;
 }
 .teaser h2 { // Headlines on related stories and filter explanations
-	font-size: 1em;
+	font-size: 1.2em;
 	color: $dark-purple;
+	text-decoration: underline;
 }
 .filter-exp h2 {
 	font-size: 1.2em;
