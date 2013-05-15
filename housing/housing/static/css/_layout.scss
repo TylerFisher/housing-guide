@@ -55,17 +55,21 @@
 	@media (min-width: $desk-start) {
 		position: absolute;
 		right: 24px;
-		bottom: 40px;
+		bottom: 24px;
 	}
 }
 #searchbox {
-    width: 300px;
+	width: 100%!important;
+    @media (min-width: $desk-start) {
+    	max-width: 300px!important;
+    }
 }
-ul.typeahead.dropdown-menu {
-	z-index: 1000;
-	li {
-		list-style-type: none;
-	}
+.chzn-default span {
+	font-family: $proxima;
+	text-transform: uppercase;
+	color: $dark-purple;
+	font-weight: lighter;
+	font-size: 0.8em;
 }
 
 // Filter
