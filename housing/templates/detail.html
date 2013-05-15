@@ -48,7 +48,7 @@
           <ul class="rslides">
               {% for image in dorm.get_slideshow %}
                   <li class="image">
-                      <img src="{{ image.image.url}}">
+                      <img src="{{image.url}}">
                       {% if image.caption %}
                           <span class="image-caption">{{ image.caption }}</span>
                       {% endif %}
@@ -178,7 +178,13 @@
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
     <script src="{% static 'js/leaflet-providers.js' %}"></script>
+    <script src="{% static 'js/responsiveslides.min.js' %}"></script>
+
     <script type="text/javascript">
+      $(function() {
+        $(".rslides").responsiveSlides();
+      });
+
       var geojson;
 
       var defaultStyle = {'weight': '0', fillColor: '#381f5e', fillOpacity: '1'};
