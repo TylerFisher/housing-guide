@@ -222,6 +222,7 @@
     });
 
     $('#photo-tab').click(function() {
+      $('#embed-container iframe').remove();
       $('#embed-container').hide();
       $('#media-container img').css('display', 'block');
       $('#photo-tab').css('background', '#381F5E');
