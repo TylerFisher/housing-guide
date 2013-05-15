@@ -16,14 +16,25 @@ a {
 a:hover{
 	text-decoration: underline;
 }
+h1 a {
+	color: $dark-gray;
+}
+h1 a:hover {
+	text-decoration: none;
+	color: $light-gray;
+}
 ::selection {
 	background: $light-purple;
 }
 ::-moz-selection {
 	background: $light-purple;
 }
-#search-container input {
-	font-family: $meta;
+#searchbox_chzn {
+	font-family: $proxima;
+    font-size: 100%;
+}
+#searchbox_chzn input {
+    height: 100%;
 }
 
 .leaflet-container {
@@ -107,8 +118,11 @@ h5, span.epsilon { // Details on actions, e.g. "by dorm name," "or read more"
 	font-size: 1em;
 }
 .credit {
+	color: #fff;
+	margin-bottom: 0.5em;
+}
+p.credit {
 	font-family: $proxima;
 	font-weight: light;
 	font-size: 0.8em;
-	color: #fff;
 }

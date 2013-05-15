@@ -7,8 +7,10 @@
     <title>Housing Guide - North by Northwestern</title>
     <script type="text/javascript" src="//use.typekit.net/rwj4edd.js"></script>
     <script type="text/javascript" src="{% static 'js/d3.v3.min.js' %}"></script>
-	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
     <script type="text/javascript">var STATIC_URL = "{{ STATIC_ROOT }}";</script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/chosen.jquery.min.js' %}"></script>
 	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
     <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/responsiveslides.css' %}">
@@ -18,4 +20,9 @@
 		<a href="http://northbynorthwestern.com/"><img src="{% static 'img/nbn-logo.png' %}" alt="North by Northwestern"></a>
 	</div>
 	{% block main %}{% endblock %}
+  <script type="text/javascript">
+      $('#searchbox').change(function() {
+          window.location.href = $(this).val();
+      });
+  </script>
 </body>

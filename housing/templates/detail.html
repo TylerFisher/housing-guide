@@ -4,14 +4,24 @@
 	<div id="header">
 		<div class="grid">
 			<div class="grid__item one-whole desk-two-thirds float-left">
-				<h1><span class="smaller">The </span>Housing Guide</h1>
+				<h1><a href="/housing"><span class="smaller">The </span>Housing Guide</a></h1>
 			</div><!--
 		 --><div class="grid__item one-whole desk-one-third no-padding">
 				<div id="search-container">
-					<label for="searchbox"><span class="delta">Search</span><span class="epsilon"> by dorm name</span></label>
-					<input id="searchbox" type="text" data-provide="typeahead" autocomplete="off">
-				</div>
+          <select id="searchbox" name="" data-placeholder="Search" multiple class="chosen-select">
+            {% for dorm in dorms %}
+            <option value="/housing/hall/{{ dorm.slug }}">{{ dorm.short_name }}</option>
+            {% endfor %}
+          </select>
+          <script type="text/javascript">
+            $('.chosen-select').chosen();      
+            $('#searchbox').change(function() {
+                window.location.href = $(this).val();
+            });
+        </script>
+        </div>
 			</div>
+      <div style="clear: both;"></div>
 		</div>
 	</div>
 
@@ -146,6 +156,22 @@
 		</div>
 	</div>
 
+  <div class="grid padded background-purple clear">
+    <div class="grid__item one-whole lap-and-up-one-quarter">
+    <p class="credit"><em>Reporting by&nbsp;</em>&nbsp;Shelbie Bostedt, Mallory Busch, Bethany DeLong, Katie George, Jessica Guenzl, Chrissy Lee, Anne Li, Alex Nitkin, Zoe Pearl, Preetisha Sen, Polina Senderova, Carter Sherman, Zach Silva, Sam Spahn, Sarah Turbin, Bethany Tuten, Eric Vanchieri and Alice Zhang</p>
+    </div><!--
+   --><div class="grid__item one-whole lap-and-up-one-quarter">
+      <p class="credit"><em>Photos by&nbsp;</em>&nbsp;Gabe Bergado, Mallory Busch, Bethany DeLong, Timothyna Duncan, Forrest Hanson, Sam Hart, Anne Li, Priscilla Liu, Susie Neilson, Michelle Reisin, Madhuri Sathish, Zach Silva, Jenny Starrs, Megan Suckut, Hillary Thomas, Bethany Tuten and Lucy Wang</p>
+    </div><!--
+   --><div class="grid__item one-whole lap-and-up-one-quarter">
+      <p class="credit"><em>Videos by&nbsp;</em>&nbsp;Gabe Bergado, Mallory Busch, Caitlin Gerena, Max Gleber, Forrest Hanson, John Hardberger, Christophe Haubursin, Denise Lu, Adam Mintzer, Yunita Ong, Jon Palmer, Sam Spahn, Jenny Starrs and Ashley Wu</p>
+    </div><!--
+   --><div class="grid__item one-whole lap-and-up-one-quarter">
+      <p class="credit"><em>Design and development by&nbsp;</em>&nbsp;Tyler Fisher, Hilary Fung, Dan Hill, KK Rebecca Lai, Sheng Wu and Katie Zhu</p>
+      <p class="credit">Data provided by Northwestern University Residential Services</p>
+    </div>
+  </div>
+
 
 
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -162,7 +188,13 @@
 
       var defaultStyle = {'weight': '0', fillColor: '#381f5e', fillOpacity: '1'};
 
-      var map = L.map('small-map').setView([42.05504447993239,-87.6753830909729], 16);
+      var map = L.map('small-map', {
+        minZoom: 15,
+        maxBounds: [
+          [42.07095890994855, -87.65922546386719],
+          [42.039094188385945, -87.69158363342285]
+        ]
+      }).setView([42.05504447993239,-87.6753830909729], 16);
       L.tileLayer.provider('MapQuestOpen.OSM').addTo(map);
       $.getJSON('{% url "detail_json" dorm_slug=dorm.slug %}', function(data){
             parse_map_data(data);

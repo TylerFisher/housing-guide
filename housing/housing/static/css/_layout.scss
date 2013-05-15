@@ -44,8 +44,7 @@
 	position: relative;
 	color: $dark-gray;
 	border-bottom: 1px solid $light-purple;
-	overflow: auto;
-	padding: 24px;
+	padding: 18px 24px;
 }
 #search-container {
 	position: relative;
@@ -56,24 +55,11 @@
 	@media (min-width: $desk-start) {
 		position: absolute;
 		right: 24px;
-		bottom: 24px;
-		width: 30%;
+		bottom: 40px;
 	}
-	label {
-		position: absolute;
-		left: 8px;
-		top: 2px;
-		@media (max-width: $desk-start) {
-			top: 18px;
-		}
-	}
-	input {
-	background: transparent;
-	width: 100%;
-		@media (max-width: $desk-start) {
-			margin: 16px 0em;
-		}
-	}
+}
+#searchbox {
+    width: 300px;
 }
 ul.typeahead.dropdown-menu {
 	z-index: 1000;
@@ -166,6 +152,7 @@ table {
 		background-color: $light-purple;
 		height: 2em;
 		font-weight: bold;
+		border-bottom: 1px solid $dark-purple;
 	}
 	thead tr td:first-child {
 		padding-left: 3%;
