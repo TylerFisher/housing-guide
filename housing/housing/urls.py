@@ -6,7 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^housing/$', 'guide.views.home', name='home'),
-    url(r'^housing/$', RedirectView.as_view('url': '/housing/')),
+    url(r'^housing/$', RedirectView.as_view(url='/housing/')),
     url(r'^housing/hall/(?P<dorm_slug>[\w\-]+)/$', 'guide.views.detail', name='detail'),
     url(r'^housing/admin/', include(admin.site.urls)),
     url(r'^housing/json/', 'guide.views.get_shapes', name='get_shapes'),
