@@ -109,8 +109,11 @@ h5, span.epsilon { // Details on actions, e.g. "by dorm name," "or read more"
 	font-size: 1em;
 }
 .credit {
+	color: #fff;
+	margin-bottom: 0.5em;
+}
+p.credit {
 	font-family: $proxima;
 	font-weight: light;
 	font-size: 0.8em;
-	color: #fff;
 }
