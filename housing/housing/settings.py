@@ -26,7 +26,9 @@ DATABASES = {
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '.northbynorthwestern.com'
+]
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -53,22 +55,22 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = '/'
+MEDIA_URL = '/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
-MEDIA_URL = ''
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = '/static'
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
-STATIC_URL = '/static/'
+STATIC_URL = 'http://nbn-housing.s3.amazonaws.com/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -106,10 +108,7 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'housing.urls'
-
-# Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'housing.wsgi.application'
+ROOT_URLCONF = 'housing.housing.urls'
 
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_PATH, '../templates')
@@ -126,10 +125,26 @@ INSTALLED_APPS = (
     'django.contrib.gis',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'storages',
     'csvimport',
     'south',
     'guide',
 )
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', None)
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', None)
+AWS_STORAGE_BUCKET_NAME = 'nbn-housing'
+AWS_QUERYSTRING_AUTH = False
+AWS_S3_URL_PROTOCOL = 'http:'
+AWS_S3_SECURE_URLS = False
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.file'
+
+DATE_FORMAT = 'P N j Y'
+DATETIME_FORMAT = 'P N j Y'
+TIME_FORMAT = 'P'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
