@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load staticfiles %}
+{% load static %}
 {% block main %}
 	<div id="header">
 		<h1><span class="smaller">The </span>Housing Guide</h1>
@@ -224,7 +224,7 @@
   </div>
 
     <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
-    <script src="{% static 'js/leaflet-providers.js' %}"></script>
+    <script src="{% get_static_prefix %}js/leaflet-providers.js"></script>
     <script type="text/javascript">
       var geojson;
 

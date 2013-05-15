@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load staticfiles %}
+{% load static %}
 {% block main %}
 	<div id="header">
 		<div class="grid">
@@ -91,23 +91,6 @@
   					<p class="body-text quote padding-top">&ldquo;{{ quote.text }}&rdquo;</p>
             <p class="quote-attr">{{ quote.source }}</p>
           {% endfor %}
-
-
-					<!-- <p class="body-text quote">&ldquo;Most in the dorm are RTVF or journalism majors, which makes it very nice for those people, but other majors are not left out either. CRC has a lot of very cool traditions.&rdquo;</p>
-          <p class="quote-attr">Hilary Fung, Medill senior</p>
-
-					<p class="body-text quote">&ldquo;This dorm should have been renovated twenty years ago. An alum came back who lived here in the 80s and said he had the same furniture.&rdquo;</p>
-          <p class="quote-attr">Rebecca Lai, SESP sophomore</p>
-
-					<p class="body-text quote">&ldquo;It's super close to all south classes, so you can roll out of bed at 8:53 and get to a 9 am class with a minute to breathe.&rdquo;</p>
-          <p class="quote-attr">Sheng Wu, McCormick junior</p>
-
-					<p class="body-text quote">&ldquo;Everyone here only hangs out with/parties with/talks to /sleeps with people here. It's also very nerdy and into things like video games, comic books, internet memes, etc.&rdquo;</p>
-          <p class="quote-attr">Hilary Zhu, Superhuman</p>
-
-					<p class="body-text quote">&ldquo;If you are fairly sarcastic, enjoy messing with people, internet memes, and don't necessarily need to party 24/7, CRC is a great dorm.&rdquo;</p>
-          <p class="quote-attr">Dan Hill, Medill senior</p> -->
-
 				</div>
 			</div>
 		</div>
@@ -178,8 +161,8 @@
 
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
-    <script src="{% static 'js/leaflet-providers.js' %}"></script>
-    <script src="{% static 'js/responsiveslides.min.js' %}"></script>
+    <script src="{% get_static_prefix %}js/leaflet-providers.js"></script>
+    <script src="{% get_static_prefix %}js/responsiveslides.min.js"></script>
 
     <script type="text/javascript">
       $(function() {
