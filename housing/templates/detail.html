@@ -156,7 +156,13 @@
 
       var defaultStyle = {'weight': '0', fillColor: '#381f5e', fillOpacity: '1'};
 
-      var map = L.map('small-map').setView([42.05504447993239,-87.6753830909729], 16);
+      var map = L.map('small-map', {
+        minZoom: 15,
+        maxBounds: [
+          [42.07095890994855, -87.65922546386719],
+          [42.039094188385945, -87.69158363342285]
+        ]
+      }).setView([42.05504447993239,-87.6753830909729], 16);
       L.tileLayer.provider('MapQuestOpen.OSM').addTo(map);
       $.getJSON('{% url "detail_json" dorm_slug=dorm.slug %}', function(data){
             parse_map_data(data);
